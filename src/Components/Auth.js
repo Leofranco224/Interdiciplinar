@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function (props) {
+export default function Auth (props) {
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form">
-        <div className="Auth-form-content">
+      <div className="Auth-form-content">
+        <form className="Auth-form">
           <h3 className="Auth-form-title">Bem vindo de volta!</h3>
-          <div className="text-center text-secondary ">
+          <div className="text-center text-secondary">
             Entre em sua conta
           </div>
           <div className="form-group mt-3">
@@ -23,27 +23,26 @@ export default function (props) {
               placeholder="Senha"
             />
           </div>
-          <div class="form-check">
-            <input class="form-check-input inpt-dark" type="checkbox" value="" id="flexCheckDefault"/>
+          <div class="form-check mt-1">
+            <input class="form-check-input inpt-dark inpt-check" type="checkbox" value="" id="flexCheckDefault" />
             <label class="form-check-label text-secondary" for="flexCheckDefault">
-                lembrar-me
+              lembrar-me
             </label>
           </div>
-          <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-default">
+          <div className="btn-area mt-3">
+            <button type="submit" className="btn btn-def">
               Entrar
             </button>
           </div>
+        </form>
+      </div>
+      <div className="Auth-form-Cadastro">
+        <div className="cadastro-area">
+          <h3 className="main-text">Novo Aqui?</h3>
+          <p className="second-text">Crie sua conta e comece a jogar</p>
+          <a href="/Cadastro" className="btn btn-light btn-cadastro mt-4">Cadastre-se</a>
         </div>
-      </form>
-      <div className="Auth-form-content Auth-form-Cadastro">
-        <h3>Novo Aqui?</h3>
-        <div>
-            Crie sua conta e comece a jogar
-        </div>
-        <button className="btn btn-light">Cadastre-se</button>
       </div>
     </div>
-    
   );
 }

@@ -4,13 +4,15 @@ import "./App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Auth from "./Components/Auth"
 import Cadastro from "./Components/Cadastro"
+import Escalacao from "./Components/Escalacao"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/" element={<Auth />} />
         <Route path="/Cadastro" element={<Cadastro />} />
+        <Route path="/Escalacao" element={<Escalacao/>} />
       </Routes>
     </BrowserRouter>
   )
