@@ -2,6 +2,7 @@ import React from "react";
 import menuIcon from '../images/menuIcon.png';
 import cartolaImg from '../images/cartolaImagem.png';
 import Lane from "./Lane";
+import { Button } from "bootstrap";
 
 export default function Escalacao(props) {
 
@@ -12,7 +13,7 @@ export default function Escalacao(props) {
                     <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" />
                 </div>
                 <img className="logo-escalacao" src={cartolaImg} alt="logo" />
-                <p className="escolha-top-text">Cartolol</p>
+                <button type="submit" className="escolha-top-text">Cartolol</button>
             </div>
 
             <div className="escalacao">

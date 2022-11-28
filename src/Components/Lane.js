@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from 'react'
-import simboloBot from '../images/lanes/Position_Gold-Bot.png';
-import simboloSup from '../images/lanes/Position_Gold-Support.png';
-import simboloMid from '../images/lanes/Position_Gold-Mid.png';
-import simboloTop from '../images/lanes/Position_Gold-Top.png';
-import simboloJg from '../images/lanes/Position_Gold-Jungle.png';
+import simboloBot from '../images/lanes/Position_Gold-Bot-transformed.png';
+import simboloSup from '../images/lanes/Position_Gold-Support-transformed.png';
+import simboloMid from '../images/lanes/Position_Gold-Mid-transformed.png';
+import simboloTop from '../images/lanes/Position_Gold-Top-transformed.png';
+import simboloJg from '../images/lanes/Position_Gold-Jungle-transformed.png';
 
 import Popup from "./Popup";
 

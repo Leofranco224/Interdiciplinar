@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Auth (props) {
+export default function Auth(props) {
   return (
     <div className="Auth-form-container">
       <div className="Auth-form-content">
@@ -12,14 +12,14 @@ export default function Auth (props) {
           <div className="form-group mt-3">
             <input
               type="email"
-              className="form-control mt-1 inpt-dark"
+              className="form-login-control mt-1 inpt-dark"
               placeholder="Usuário"
             />
           </div>
           <div className="form-group mt-3">
             <input
               type="password"
-              className="form-control mt-1 inpt-dark"
+              className="form-login-control mt-1 inpt-dark"
               placeholder="Senha"
             />
           </div>
