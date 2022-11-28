@@ -1,13 +1,29 @@
 import React from "react";
+import { useState } from "react";
 import menuIcon from '../images/menuIcon.png';
 import Lane from "./Lane";
+import Sidebar from "./Sidebar";
 
 export default function Escalacao(props) {
+
+    const [showElement, setShowElement] = useState(false);
+
+    function showOrHide() {
+        if(showElement) {
+            setShowElement(false);
+        }
+        else {
+            setShowElement(true);
+        }
+    }
+
     return (
         <div className="escalacao-container">
+            { showElement ? <Sidebar showOrHide={showOrHide}/> : null }
+            
             <div className="top">
                 <div className="icon-area">
-                    <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" />
+                    <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" showOrHide={showOrHide} onClick={showOrHide}/>
                 </div>
                 <div className="area-text">
                     <p className="escolha-text">Escolha seu time</p>

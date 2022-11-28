@@ -59,7 +59,7 @@ export default function Cadastro(props) {
       </div>
 
       <div className="image-content">
-        <img className="img-random" src={imagemRandom} alt="background-image"/>
+        <img className="img-random" src={imagemRandom} alt="background"/>
       </div>
     </div>
   );
