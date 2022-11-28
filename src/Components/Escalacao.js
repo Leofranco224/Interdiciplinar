@@ -2,6 +2,7 @@ import React from "react";
 import menuIcon from '../images/menuIcon.png';
 import cartolaImg from '../images/cartolaImagem.png';
 import Lane from "./Lane";
+import coin from "../images/coin.gif";
 import { Button } from "bootstrap";
 
 export default function Escalacao(props) {
@@ -27,6 +28,7 @@ export default function Escalacao(props) {
                 </div>
                 <div className="pontuacao-area">
                     <p className="pontuacao-text"><span className="pontos">73.5</span></p>
+                    <img src={coin} className="pontuacao-gif" alt="pontos" />
                 </div>
             </div>
         </div>

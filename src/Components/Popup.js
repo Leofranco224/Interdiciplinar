@@ -16,10 +16,8 @@ export default function Popup(props) {
             </div>
 
 
-            <JogadorCard showOrHide={props.showOrHide} />
-            <JogadorCard showOrHide={props.showOrHide} />
-            <JogadorCard showOrHide={props.showOrHide} />
-            <JogadorCard showOrHide={props.showOrHide} />
+            <JogadorCard showOrHide={props.showOrHide} lane={props.laneName} />
+
         </div>
 
     );

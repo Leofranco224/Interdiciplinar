@@ -470,3 +470,6 @@ label {
   display: flex;
   flex-direction: column;
 }
+.pontuacao-gif{
+  width: 20%;
+}
