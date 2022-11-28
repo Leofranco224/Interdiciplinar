@@ -5,9 +5,9 @@ import React, { useEffect, useState } from "react";
 export default function JogadorTop(props) {
 
     let jogadores = []
-    const data = { 'lane': 1 };
+    const data = { lane:  }
 
-    fetch('https://cartolol-apirest.vercel.app/api/get_players_list', { method: 'POST', body: JSON.stringify(data) });
+    console.log(fetch('https://cartolol-apirest.vercel.app/api/get_players_list', { method: 'GET', body: JSON.stringify(data) }));
 
 
     return (
