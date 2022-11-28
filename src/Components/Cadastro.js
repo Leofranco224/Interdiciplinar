@@ -1,26 +1,24 @@
 import React from "react";
 import cartolaImg from '../images/cartolaImagem.png';
-import imagemRandom from '../images/imagemRandom.jpg'
+import loginImg from '../images/cartololLogin.png'
 
 export default function Cadastro(props) {
   return (
-    <div className="Cadastro-form-container">
+    <div className="Cadastro-form-container" >
       <div className="main-content">
         <div className="top-bar mt-3">
           <img className="logo" src={cartolaImg} alt="logo" />
           <p className="main-title">Cartolol</p>
         </div>
 
-        <div className="register-form-content mt-5">
+        <div className="register-form-content mt-5" >
           <form className="Auth-form">
-            <div className="text-secondary">
-              Entre em sua conta
-            </div>
             <h3 className="Cadastro-form-title">Crie sua conta</h3>
-            <div className="text-secondary d-flex mb-3">
+            <div className="text-secondary d-flex mb-3" >
               Já possui uma conta?
               <a href="/" className="redirect-login-text">Entrar</a>
             </div>
+
             <div className="form-group mt-3">
               <input
                 type="text"
@@ -50,16 +48,18 @@ export default function Cadastro(props) {
               />
             </div>
             <div className="btn-area mt-3">
-              <button type="submit" className="btn btn-def">
+              <button type="submit" className="btn submit-btn-def">
                 Criar conta
               </button>
             </div>
+
           </form >
         </div>
       </div>
 
+
       <div className="image-content">
-        <img className="img-random" src={imagemRandom} alt="background-image"/>
+        <img className="cartolol-login" src={loginImg} alt="background-image" />
       </div>
     </div>
   );
