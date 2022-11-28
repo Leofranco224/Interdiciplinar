@@ -1,25 +1,57 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'
 
-export default function Auth (props) {
+const urlApi = "https://cartolol-apirest.vercel.app/api/logar";
+
+export default function Auth(props) {
+
+  const [UserName, setUserName] = React.useState('');
+  const [Senha, setSenha] = React.useState('');
+  const navigate = useNavigate();
+
+  const logaUsuario = async event => {
+    event.preventDefault();
+
+    const res = await fetch('https://cartolol-apirest.vercel.app/api/logar', {
+      body: JSON.stringify({
+        username: event.target.username.value,
+        senha: event.target.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      method: 'POST'
+    })
+    const result = await res.json()
+    console.log(result.status)
+    if (result.status == "true") {
+      navigate("/Escalacao");
+    }
+  }
+
+
   return (
     <div className="Auth-form-container">
       <div className="Auth-form-content">
-        <form className="Auth-form">
+        <form className="Auth-form" onSubmit={logaUsuario}>
           <h3 className="Auth-form-title">Bem vindo de volta!</h3>
           <div className="text-center text-secondary">
             Entre em sua conta
           </div>
           <div className="form-group mt-3">
             <input
-              type="email"
-              className="form-control mt-1 inpt-dark"
+              id="username"
+              type="text"
+              className="form-login-control mt-1 inpt-dark"
               placeholder="Usuário"
             />
           </div>
           <div className="form-group mt-3">
             <input
+              id="password"
               type="password"
-              className="form-control mt-1 inpt-dark"
+              className="form-login-control mt-1 inpt-dark"
               placeholder="Senha"
             />
           </div>
@@ -29,7 +61,7 @@ export default function Auth (props) {
               lembrar-me
             </label>
           </div>
-          <div className="btn-area mt-3">
+          <div className="btn-area mt-4">
             <button type="submit" className="btn btn-def">
               Entrar
             </button>
