@@ -1,34 +1,43 @@
 import React from "react";
-import  { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'universal-cookie';
 
-const urlApi = "https://cartolol-apirest.vercel.app/api/logar";
+export default function Auth(props) {
 
-
-export default function Auth (props) {
-  const [UserName, setUserName] = React.useState('');
-  const [Senha, setSenha] = React.useState('');
+  // const [UserName, setUserName] = React.useState('');
+  // const [Senha, setSenha] = React.useState('');
+  const cookies = new Cookies();
   const navigate = useNavigate();
 
   const logaUsuario = async event => {
     event.preventDefault();
-  
+
     const res = await fetch('https://cartolol-apirest.vercel.app/api/logar', {
-            body: JSON.stringify({
-              username: event.target.username.value,
-              senha: event.target.password.value
-            }),
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-          })
-          const result = await res.json()
-          if (result.status == "true"){ 
-            navigate("/Escalacao");
-          }  
+      body: JSON.stringify({
+        username: event.target.username.value,
+        senha: event.target.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
+      method: 'POST'
+    })
+    const result = await res.json()
+    console.log(result.status)
+    if (result.status == "true") {
+      //Setar cookies de autenticação
+      const age = 60 * 60 * 24 * 30 * 1000 //Similar ao Remember Me (da pra implementar isso se quiser)
+      cookies.set("access-token", result.jwt, {
+        path: "/",
+        maxAge: age,
+        sameSite: true,
+        })
+
+      navigate("/Escalacao");
+    }
   }
-  
+
 
   return (
     <div className="Auth-form-container">
@@ -42,18 +51,16 @@ export default function Auth (props) {
             <input
               id="username"
               type="text"
-              className="form-control mt-1 inpt-dark"
+              className="form-login-control mt-1 inpt-dark"
               placeholder="Usuário"
-              onChange={e => setUserName(e.target.value)}
             />
           </div>
           <div className="form-group mt-3">
             <input
               id="password"
               type="password"
-              className="form-control mt-1 inpt-dark"
+              className="form-login-control mt-1 inpt-dark"
               placeholder="Senha"
-              onChange={e => setSenha(e.target.value)}
             />
           </div>
           <div class="form-check mt-1">
@@ -62,7 +69,7 @@ export default function Auth (props) {
               lembrar-me
             </label>
           </div>
-          <div className="btn-area mt-3">
+          <div className="btn-area mt-4">
             <button type="submit" className="btn btn-def">
               Entrar
             </button>
@@ -79,4 +86,3 @@ export default function Auth (props) {
     </div>
   );
 }
-
