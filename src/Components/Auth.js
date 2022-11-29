@@ -3,11 +3,17 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 
 export default function Auth(props) {
+
   const [erro, setErro] = React.useState('')
   // const [UserName, setUserName] = React.useState('');
   // const [Senha, setSenha] = React.useState('');
   const cookies = new Cookies();
   const navigate = useNavigate();
+
+  function login() {
+    setErro('')
+    logaUsuario()
+  }
 
   const logaUsuario = async event => {
     event.preventDefault();
