@@ -39,16 +39,17 @@ function Lane(props) {
             simbolo = simboloSup
     }
 
-    const [fotoTop, setFotoTop] = useState('');
-    const [fotoJungle, setFotoJungle] = useState('');
-    const [fotoMid, setFotoMid] = useState('');
-    const [fotoBot, setFotoBot] = useState('');
-    const [fotoSup, setFotoSup] = useState('');
+    const [fotoTop, setFotoTop] = useState({});
+    const [fotoJungle, setFotoJungle] = useState({});
+    const [fotoMid, setFotoMid] = useState({});
+    const [fotoBot, setFotoBot] = useState({});
+    const [fotoSup, setFotoSup] = useState({});
 
     let selecionadoTop, selecionadoJungle, selecionadoMid, selecionadoBot, selecionadoSup, selecionado;
+    console.log(fotoTop.img_url, fotoJungle.img_url, fotoMid.img_url, fotoBot.img_url, fotoSup.img_url);
+    if (fotoTop.img_url !== '' || fotoTop.img_url !== undefined) {
 
-    if (fotoTop != '') {
-        selecionadoTop = <img className="player-img-card" src={fotoTop} alt="adicionar" />
+        selecionadoTop = <img className="player-img-card" src={fotoTop.img_url} alt="adicionar" />
         selecionadoJungle = '';
         selecionadoMid = '';
         selecionadoBot = '';
@@ -58,9 +59,9 @@ function Lane(props) {
         selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
     }
 
-    if (fotoJungle != '') {
+    if (fotoJungle.img_url !== undefined) {
         selecionadoTop = '';
-        selecionadoJungle = <img className="player-img-card" src={fotoJungle} alt="adicionar" />
+        selecionadoJungle = <img className="player-img-card" src={fotoJungle.img_url} alt="adicionar" />
         selecionadoMid = '';
         selecionadoBot = '';
         selecionadoSup = '';
@@ -69,10 +70,10 @@ function Lane(props) {
         selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
     }
 
-    if (fotoMid != '') {
+    if (fotoMid.img_url !== undefined) {
         selecionadoTop = '';
         selecionadoJungle = '';
-        selecionadoMid = <img className="player-img-card" src={fotoMid} alt="adicionar" />
+        selecionadoMid = <img className="player-img-card" src={fotoMid.img_url} alt="adicionar" />
         selecionadoBot = '';
         selecionadoSup = '';
     }
@@ -80,23 +81,23 @@ function Lane(props) {
         selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
     }
 
-    if (fotoBot != '') {
+    if (fotoBot.img_url !== undefined) {
         selecionadoTop = '';
         selecionadoJungle = '';
         selecionadoMid = '';
-        selecionadoBot = <img className="player-img-card" src={fotoBot} alt="adicionar" />
+        selecionadoBot = <img className="player-img-card" src={fotoBot.img_url} alt="adicionar" />
         selecionadoSup = '';
     }
     else {
         selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
     }
 
-    if (fotoSup != '') {
+    if (fotoSup.img_url !== undefined) {
         selecionadoTop = '';
         selecionadoJungle = '';
         selecionadoMid = '';
         selecionadoBot = '';
-        selecionadoSup = <img className="player-img-card" src={fotoSup} alt="adicionar" />
+        selecionadoSup = <img className="player-img-card" src={fotoSup.img_url} alt="adicionar" />
     }
     else {
         selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />

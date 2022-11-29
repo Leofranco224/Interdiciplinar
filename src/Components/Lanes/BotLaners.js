@@ -4,7 +4,7 @@ export default function JogadorBot(props) {
 
     function click() {
         props.showOrHide()
-        props.setFotoBot(props.jogador.img_url)
+        props.setFotoBot(props.jogador)
     }
 
     return (
@@ -24,7 +24,7 @@ export default function JogadorBot(props) {
             <div className="player-total-points">
                 <p className="player-points" > 8 </p>
             </div>
-            
+
         </div>
     );
 }

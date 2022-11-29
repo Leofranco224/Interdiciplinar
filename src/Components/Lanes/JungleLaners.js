@@ -4,7 +4,7 @@ export default function JogadorJungle(props) {
 
     function click() {
         props.showOrHide()
-        props.setFotoJungle(props.jogador.img_url)
+        props.setFotoJungle(props.jogador)
     }
 
     return (
