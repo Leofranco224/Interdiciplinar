@@ -10,14 +10,9 @@ export default function Auth(props) {
   const cookies = new Cookies();
   const navigate = useNavigate();
 
-  function login() {
-    setErro('')
-    logaUsuario()
-  }
-
   const logaUsuario = async event => {
     event.preventDefault();
-
+    setErro('')
     const res = await fetch('https://cartolol-apirest.vercel.app/api/logar', {
       body: JSON.stringify({
         username: event.target.username.value,
