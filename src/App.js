@@ -1,6 +1,7 @@
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./Components/Auth";
 import Cadastro from "./Components/Cadastro";
@@ -14,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/Escalacao" element={<Escalacao/>} />
-        <Route path="/Ranking" element={<Ranking/>} />
-        <Route path="/Perfil" element={<Perfil/>} />
+        <Route path="/Escalacao" element={<Escalacao />} />
+        <Route path="/Ranking" element={<Ranking />} />
+        <Route path="/Perfil" element={<Perfil />} />
       </Routes>
     </BrowserRouter>
   )
