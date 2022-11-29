@@ -20,11 +20,11 @@ export default function Escalacao(props) {
             <div className="escalacao">
                 <p className="escolha-text">Criação de time</p>
                 <div className="escalacao-area">
-                    <Lane laneName="TOP" />
-                    <Lane laneName="JUNGLE" />
-                    <Lane laneName="MID" />
-                    <Lane laneName="ADC" />
-                    <Lane laneName="SUP" />
+                    <Lane laneName="TOP" laneNumber={1} />
+                    <Lane laneName="JUNGLE" laneNumber={2} />
+                    <Lane laneName="MID" laneNumber={3} />
+                    <Lane laneName="ADC" laneNumber={4} />
+                    <Lane laneName="SUP" laneNumber={5} />
                 </div>
                 <div className="pontuacao-area">
                     <p className="pontuacao-text"><span className="pontos">73.5</span></p>

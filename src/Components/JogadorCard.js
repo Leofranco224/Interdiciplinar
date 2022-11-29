@@ -1,6 +1,4 @@
-import { Tooltip } from "bootstrap";
 import React from "react";
-import placeholder from '../images/placeholderJogador.png';
 import JogadorBot from "./Lanes/BotLaners";
 import JogadorJungle from "./Lanes/JungleLaners";
 import JogadorMid from "./Lanes/MidLaners";
@@ -12,15 +10,15 @@ export default function JogadorCard(props) {
     const lane = props.lane
     switch (lane) {
         case 'TOP':
-            return (<JogadorTop showOrHide={props.showOrHide} />);
+            return (<JogadorTop showOrHide={props.showOrHide} jogador={props.jogador} />);
         case 'JUNGLE':
-            return (<JogadorJungle showOrHide={props.showOrHide} />);
+            return (<JogadorJungle showOrHide={props.showOrHide} jogador={props.jogador} />);
         case 'MID':
-            return (<JogadorMid showOrHide={props.showOrHide} />);
+            return (<JogadorMid showOrHide={props.showOrHide} jogador={props.jogador} />);
         case 'ADC':
-            return (<JogadorBot showOrHide={props.showOrHide} />);
+            return (<JogadorBot showOrHide={props.showOrHide} jogador={props.jogador} />);
         case 'SUP':
-            return (<JogadorSupport showOrHide={props.showOrHide} />);
+            return (<JogadorSupport showOrHide={props.showOrHide} jogador={props.jogador} />);
 
     }
 }

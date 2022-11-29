@@ -45,7 +45,7 @@ function Lane(props) {
 
     return (
         <>
-            {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} /> : null}
+            {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber} /> : null}
             <div className="player-container">
 
             </div>
