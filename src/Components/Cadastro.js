@@ -5,10 +5,11 @@ import loginImg from '../images/cartololLogin.png'
 
 export default function Cadastro(props) {
 
-  const [UserName, setUserName] = React.useState('');
-  const [Email, setEmail] = React.useState('');
-  const [Senha, setSenha] = React.useState('');
-  const [ConfirmaSenha, setConfirmaSenha] = React.useState('');
+  // const [UserName, setUserName] = React.useState('');
+  // const [Email, setEmail] = React.useState('');
+  // const [Senha, setSenha] = React.useState('');
+  // const [ConfirmaSenha, setConfirmaSenha] = React.useState('');
+  
   const navigate = useNavigate();
 
   const cadastraUsuario = async event => {
@@ -92,7 +93,7 @@ export default function Cadastro(props) {
       </div>
 
       <div className="image-content">
-        <img className="cartolol-login" src={loginImg} alt="background-image" />
+        <img className="cartolol-login" src={loginImg} alt="background" />
       </div>
     </div>
   );

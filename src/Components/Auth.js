@@ -1,12 +1,11 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'
 
-const urlApi = "https://cartolol-apirest.vercel.app/api/logar";
-
 export default function Auth(props) {
 
-  const [UserName, setUserName] = React.useState('');
-  const [Senha, setSenha] = React.useState('');
+  // const [UserName, setUserName] = React.useState('');
+  // const [Senha, setSenha] = React.useState('');
+  
   const navigate = useNavigate();
 
   const logaUsuario = async event => {
