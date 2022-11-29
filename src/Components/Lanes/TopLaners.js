@@ -2,9 +2,12 @@ import React from "react";
 
 
 export default function JogadoresTop(props) {
-
+    function click() {
+        props.showOrHide()
+        props.setFotoTop(props.jogador.img_url)
+    }
     return (
-        <div className="popup-area" onClick={props.showOrHide}>
+        <div className="popup-area" onClick={click} >
 
             <img className="player-img" src={props.jogador.img_url}></img>
             <div className="player-info">

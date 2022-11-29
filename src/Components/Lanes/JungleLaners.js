@@ -1,13 +1,12 @@
 import React from "react";
 import placeholder from '../../images/placeholderJogador.png';
 export default function JogadorJungle(props) {
-
-
-
-
-
+    function click() {
+        props.showOrHide()
+        props.setFotoJungle(props.jogador.img_url)
+    }
     return (
-        <div className="popup-area" onClick={props.showOrHide}>
+        <div className="popup-area" onClick={click} >
 
             <img className="player-img" src={props.jogador.img_url}></img>
             <div className="player-info">

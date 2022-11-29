@@ -36,8 +36,6 @@ export default function Popup(props) {
     }
     return (
 
-
-
         <div className="popup">
             <div className="lane-area mb-3">
                 <img className="popup-img" src={props.laneIcon} alt="adicionar" />
@@ -46,7 +44,8 @@ export default function Popup(props) {
 
             {jogadores.map((jogador, index) =>
 
-                <JogadorCard showOrHide={props.showOrHide} lane={props.laneName} jogador={jogador} />
+                <JogadorCard showOrHide={props.showOrHide} lane={props.laneName} jogador={jogador} setFotoTop={props.setFotoTop}
+                    setFotoJungle={props.setFotoJungle} setFotoMid={props.setFotoMid} setFotoBot={props.setFotoBot} setFotoSup={props.setFotoSup} />
 
             )}
         </div>

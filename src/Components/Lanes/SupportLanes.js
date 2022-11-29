@@ -5,8 +5,12 @@ import placeholder from '../../images/placeholderJogador.png';
 
 
 export default function JogadorSupport(props) {
+    function click() {
+        props.showOrHide()
+        props.setFotoSup(props.jogador.img_url)
+    }
     return (
-        <div className="popup-area" onClick={props.showOrHide}>
+        <div className="popup-area" onClick={click} >
 
             <img className="player-img" src={props.jogador.img_url}></img>
             <div className="player-info">
