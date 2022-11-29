@@ -4,10 +4,16 @@ import Cookies from 'universal-cookie';
 
 export default function Auth(props) {
 
+  const [erro, setErro] = React.useState('')
   // const [UserName, setUserName] = React.useState('');
   // const [Senha, setSenha] = React.useState('');
   const cookies = new Cookies();
   const navigate = useNavigate();
+
+  function login() {
+    setErro('')
+    logaUsuario()
+  }
 
   const logaUsuario = async event => {
     event.preventDefault();
@@ -32,12 +38,14 @@ export default function Auth(props) {
         path: "/",
         maxAge: age,
         sameSite: true,
-        })
+      })
 
       navigate("/Escalacao");
     }
+    else {
+      setErro(<p className="error-text">Senha ou nome de usuário inválido</p>)
+    }
   }
-
 
   return (
     <div className="Auth-form-container">
@@ -47,6 +55,7 @@ export default function Auth(props) {
           <div className="text-center text-secondary">
             Entre em sua conta
           </div>
+          {erro}
           <div className="form-group mt-3">
             <input
               id="username"
