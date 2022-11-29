@@ -116,12 +116,13 @@ function Lane(props) {
 
             </div>
             <div className="player-img-area" onClick={showOrHide}>
+                {selecionado}
                 {selecionadoTop}
                 {selecionadoJungle}
                 {selecionadoMid}
                 {selecionadoBot}
                 {selecionadoSup}
-                {selecionado}
+
             </div>
 
 
