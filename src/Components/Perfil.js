@@ -39,7 +39,28 @@ export default function Perfil(props) {
         {
             navigate("/");
         }
+        else //Carregar as info do usuario
+        {
+            const res = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
+            body: JSON.stringify({
+                jwt: accessToken
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            method: 'POST'
+            })
+            const result = await res.json()
+            if(result.status == "true")
+            {
+                document.getElementById('username').value = result.username
+                document.getElementById('email').value = result.email
+            }
+        }
+
     }
+
 
     useEffect(() => {
         checkSession();
@@ -66,6 +87,7 @@ export default function Perfil(props) {
                     </div>
                     <div className="form-group mt-3 inpt-perfil">
                         <input
+                            id = "username"
                             type="text"
                             className="form-control mt-1 inpt-dark"
                             placeholder="Nome de Usuário"
@@ -73,6 +95,7 @@ export default function Perfil(props) {
                     </div>
                     <div className="form-group mt-3 inpt-perfil">
                         <input
+                            id = "email"
                             type="email"
                             className="form-control mt-1 inpt-dark"
                             placeholder="E-mail"
