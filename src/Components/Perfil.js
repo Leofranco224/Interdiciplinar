@@ -1,11 +1,14 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Sidebar from "./Sidebar";
 import menuIcon from '../images/menuIcon.png';
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'universal-cookie';
 
 export default function Perfil(props) {
 
     const [showElement, setShowElement] = useState(false);
+    const navigate = useNavigate();
 
     function showOrHide() {
         if (showElement) {
@@ -15,6 +18,32 @@ export default function Perfil(props) {
             setShowElement(true);
         }
     }
+
+    async function checkSession()
+    {
+        const cookies = new Cookies();
+        const accessToken = cookies.get('access-token')
+        const res = await fetch('https://cartolol-apirest.vercel.app/api/check_session', {
+        body: JSON.stringify({
+            jwt: accessToken
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        method: 'POST'
+        })
+        const result = await res.json()
+        //Chamar API que verifica
+        if(result.status == "false")
+        {
+            navigate("/");
+        }
+    }
+
+    useEffect(() => {
+        checkSession();
+      },[]);
 
     return (
         <div className="perfil-container">

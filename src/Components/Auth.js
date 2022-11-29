@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'universal-cookie';
 
 export default function Auth(props) {
 
   // const [UserName, setUserName] = React.useState('');
   // const [Senha, setSenha] = React.useState('');
-  
+  const cookies = new Cookies();
   const navigate = useNavigate();
 
   const logaUsuario = async event => {
@@ -25,6 +26,14 @@ export default function Auth(props) {
     const result = await res.json()
     console.log(result.status)
     if (result.status == "true") {
+      //Setar cookies de autenticação
+      const age = 60 * 60 * 24 * 30 * 1000 //Similar ao Remember Me (da pra implementar isso se quiser)
+      cookies.set("access-token", result.jwt, {
+        path: "/",
+        maxAge: age,
+        sameSite: true,
+        })
+
       navigate("/Escalacao");
     }
   }
