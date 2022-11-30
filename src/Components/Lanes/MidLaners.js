@@ -4,7 +4,7 @@ export default function JogadorMid(props) {
 
     function click() {
         props.showOrHide()
-        props.setFotoMid(props.jogador.img_url)
+        props.setFotoMid(props.jogador)
     }
 
     return (

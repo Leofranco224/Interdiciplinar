@@ -4,7 +4,7 @@ export default function JogadorTop(props) {
 
     function click() {
         props.showOrHide()
-        props.setFotoTop(props.jogador.img_url)
+        props.setFotoTop(props.jogador)
     }
 
     return (

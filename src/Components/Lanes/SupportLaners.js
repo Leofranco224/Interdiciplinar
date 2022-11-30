@@ -4,7 +4,7 @@ export default function JogadorSupport(props) {
 
     function click() {
         props.showOrHide()
-        props.setFotoSup(props.jogador.img_url)
+        props.setFotoSup(props.jogador)
     }
 
     return (
