@@ -8,14 +8,13 @@ import Cookies from 'universal-cookie';
 //TESTE
 export default function Escalacao(props) {
 
-    const [showElement, setShowElement] = useState(false);
-    const [pontosTot, setPontosTot] = useState('');
-
     const navigate = useNavigate();
     const cookies = new Cookies();
     const accessToken = cookies.get('access-token')
     //MANO ISSO AQUI É O JOGADOR INTEIRO IGNORA QUE 
     //TA ESCRITO SETFOTO NAO TEM FOTO PRA PEGAR A FOTO TEM QUE ACESSAR O OBJ
+    const [showElement, setShowElement] = useState(false);
+    const [pontosTot, setPontosTot] = useState('');
     const [fotoTop, setFotoTop] = useState({});
     const [fotoJungle, setFotoJungle] = useState({});
     const [fotoMid, setFotoMid] = useState({});
@@ -27,9 +26,10 @@ export default function Escalacao(props) {
         soma = parseInt(fotoTop['partida_atual'].pontos) + parseInt(fotoJungle['partida_atual'].pontos) +
             parseInt(fotoMid['partida_atual'].pontos) + parseInt(fotoBot['partida_atual'].pontos) + parseInt(fotoSup['partida_atual'].pontos);
         await update_user_lanes(soma);
-        getPontos().then(data => { setPontosTot(data['ptos']) })
+        getPontos().then(data => { 
+            setPontosTot(data['ptos'])
+        })
         console.log(pontosTot)
-
     }
 
     async function checkSession() {
@@ -56,6 +56,7 @@ export default function Escalacao(props) {
             body: JSON.stringify({
                 jwt: accessToken,
                 ptos: soma,
+                flag: 1,
                 id_jogtop: fotoTop.id,
                 id_jogjungle: fotoJungle.id,
                 id_jogmid: fotoMid.id,
@@ -94,9 +95,9 @@ export default function Escalacao(props) {
         }
     }
 
-
     useEffect(() => {
         checkSession();
+        getPontos();
     }, []);
 
     return (
