@@ -9,8 +9,6 @@ import emAlta from '../images/trendUp.png'
 import emBaixa from '../images/trendDown.png'
 
 export default function Escalacao(props) {
-    const [showElement, setShowElement] = useState(false);
-    const [pontosTot, setPontosTot] = useState('0');
     const [pontosTotAnterior, setPontosTotAnterior] = useState('0');
     const navigate = useNavigate();
     const cookies = new Cookies();
