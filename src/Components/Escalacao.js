@@ -5,7 +5,7 @@ import Lane from "./Lane";
 import Sidebar from "./Sidebar";
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
-
+//TESTE
 export default function Escalacao(props) {
 
     const [showElement, setShowElement] = useState(false);
@@ -69,7 +69,6 @@ export default function Escalacao(props) {
             method: 'POST'
         })
     }
-
 
     async function getPontos() {
         const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
