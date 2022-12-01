@@ -18,6 +18,8 @@ export default function Escalacao(props) {
     const [status, setStatus] = useState(false);
     //MANO ISSO AQUI É O JOGADOR INTEIRO IGNORA QUE 
     //TA ESCRITO SETFOTO NAO TEM FOTO PRA PEGAR A FOTO TEM QUE ACESSAR O OBJ
+    const [showElement, setShowElement] = useState(false);
+    const [pontosTot, setPontosTot] = useState('');
     const [fotoTop, setFotoTop] = useState({});
     const [fotoJungle, setFotoJungle] = useState({});
     const [fotoMid, setFotoMid] = useState({});
