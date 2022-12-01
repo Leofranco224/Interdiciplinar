@@ -48,7 +48,6 @@ function Lane(props) {
     }
 
     function renderTop() {
-
         if (props.fotoTop.img_url !== undefined) {
 
             selecionadoTop = <img className="player-img-card" src={props.fotoTop.img_url} alt="adicionarTop" />
@@ -57,23 +56,43 @@ function Lane(props) {
         else {
             selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
         }
+        if (props.mercado) {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoTop={props.setFotoTop}
+                    /> : null}
+                    <div className="player-container">
 
-        return (
-            <>
-                {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
-                    setFotoTop={props.setFotoTop}
-                /> : null}
-                <div className="player-container">
+                    </div>
+                    <div className="player-img-area" onClick={showOrHide}>
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoTop}
 
-                </div>
-                <div className="player-img-area" onClick={showOrHide}>
-                    {selecionado}
-                    {laneSimbolo}
-                    {selecionadoTop}
+                    </div>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoTop={props.setFotoTop}
+                    /> : null}
+                    <div className="player-container">
 
-                </div>
-            </>
-        );
+                    </div>
+                    <div className="player-img-area" >
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoTop}
+
+                    </div>
+                </>
+            );
+
+        }
     }
 
     function renderJungle() {
@@ -85,22 +104,43 @@ function Lane(props) {
         else {
             selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
         }
-        return (
-            <>
-                {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
-                    setFotoJungle={props.setFotoJungle}
-                /> : null}
-                <div className="player-container">
+        if (props.mercado) {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoJungle={props.setFotoJungle}
+                    /> : null}
+                    <div className="player-container">
 
-                </div>
-                <div className="player-img-area" onClick={showOrHide}>
-                    {selecionado}
-                    {laneSimbolo}
-                    {selecionadoJungle}
+                    </div>
+                    <div className="player-img-area" onClick={showOrHide}>
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoJungle}
 
-                </div>
-            </>
-        );
+                    </div>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoJungle={props.setFotoJungle}
+                    /> : null}
+                    <div className="player-container">
+
+                    </div>
+                    <div className="player-img-area" >
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoJungle}
+
+                    </div>
+                </>
+            );
+
+        }
     }
 
     function renderMid() {
@@ -113,24 +153,43 @@ function Lane(props) {
         else {
             selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
         }
-        return (
-            <>
-                {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
-                    setFotoMid={props.setFotoMid}
-                /> : null}
-                <div className="player-container">
+        if (props.mercado) {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoMid={props.setFotoMid}
+                    /> : null}
+                    <div className="player-container">
 
-                </div>
-                <div className="player-img-area" onClick={showOrHide}>
-                    {selecionado}
-                    {laneSimbolo}
-                    {selecionadoMid}
+                    </div>
+                    <div className="player-img-area" onClick={showOrHide}>
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoMid}
 
-                </div>
-            </>
-        );
+                    </div>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoMid={props.setFotoMid}
+                    /> : null}
+                    <div className="player-container">
 
+                    </div>
+                    <div className="player-img-area" >
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoMid}
 
+                    </div>
+                </>
+            );
+
+        }
     }
 
     function renderBot() {
@@ -141,23 +200,43 @@ function Lane(props) {
         else {
             selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
         }
-        return (
-            <>
-                {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
-                    setFotoBot={props.setFotoBot}
-                /> : null}
-                <div className="player-container">
+        if (props.mercado) {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoBot={props.setFotoBot}
+                    /> : null}
+                    <div className="player-container">
 
-                </div>
-                <div className="player-img-area" onClick={showOrHide}>
-                    {selecionado}
-                    {laneSimbolo}
-                    {selecionadoBot}
+                    </div>
+                    <div className="player-img-area" onClick={showOrHide}>
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoBot}
 
-                </div>
-            </>
-        );
+                    </div>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoBot={props.setFotoBot}
+                    /> : null}
+                    <div className="player-container">
 
+                    </div>
+                    <div className="player-img-area" >
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoBot}
+
+                    </div>
+                </>
+            );
+
+        }
     }
 
     function renderSup() {
@@ -169,21 +248,43 @@ function Lane(props) {
         else {
             selecionado = <img className="lane-img" src={simbolo} alt="adicionar" />
         }
-        return (
-            <>
-                {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
-                    setFotoSup={props.setFotoSup}
-                /> : null}
-                <div className="player-container">
+        if (props.mercado) {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoSup={props.setFotoSup}
+                    /> : null}
+                    <div className="player-container">
 
-                </div>
-                <div className="player-img-area" onClick={showOrHide}>
-                    {selecionado}
-                    {laneSimbolo}
-                    {selecionadoSup}
-                </div>
-            </>
-        );
+                    </div>
+                    <div className="player-img-area" onClick={showOrHide}>
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoSup}
+
+                    </div>
+                </>
+            );
+        }
+        else {
+            return (
+                <>
+                    {showElement ? <Popup showOrHide={showOrHide} laneName={props.laneName} laneIcon={simbolo} laneNumber={props.laneNumber}
+                        setFotoSup={props.setFotoSup}
+                    /> : null}
+                    <div className="player-container">
+
+                    </div>
+                    <div className="player-img-area" >
+                        {selecionado}
+                        {laneSimbolo}
+                        {selecionadoSup}
+
+                    </div>
+                </>
+            );
+
+        }
 
     }
 
