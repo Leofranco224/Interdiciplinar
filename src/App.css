@@ -823,3 +823,6 @@ label {
   cursor: pointer;
 }
 
+.chart{
+  width: 10%;
+}
