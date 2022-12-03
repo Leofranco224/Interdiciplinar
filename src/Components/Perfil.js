@@ -188,7 +188,7 @@ export default function Perfil(props) {
             <div className="top">
                 <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" showOrHide={showOrHide} onClick={showOrHide} />
                 <p className="escolha-text">Perfil</p>
-                <img className="cartola-logo" src={cartolaImg} />
+                <img className="cartola-logo" src={cartolaImg} alt="logo"/>
             </div>
 
             <div className="perfil">
@@ -202,40 +202,40 @@ export default function Perfil(props) {
                     {showFotos ?
                         <div className="escolha-foto-area mt-3">
                             <div id="0" className="foto-box" onClick={definirFoto(foto0, 0)}>
-                                <img className="foto-perfil-escolher" src={foto0}></img>
+                                <img className="foto-perfil-escolher" src={foto0} alt="icone"/>
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto1, 1)}>
-                                <img className="foto-perfil-escolher" src={foto1}></img>
+                                <img className="foto-perfil-escolher" src={foto1} alt="icone"/>
                             </div>
                             <div id="2" className="foto-box" onClick={definirFoto(foto2, 2)}>
-                                <img className="foto-perfil-escolher" src={foto2}></img>
+                                <img className="foto-perfil-escolher" src={foto2} alt="icone"/>
                             </div>
                             <div id="3" className="foto-box" onClick={definirFoto(foto3, 3)}>
-                                <img className="foto-perfil-escolher" src={foto3}></img>
+                                <img className="foto-perfil-escolher" src={foto3} alt="icone"/>
                             </div>
                             <div id="4" className="foto-box" onClick={definirFoto(foto4, 4)}>
-                                <img className="foto-perfil-escolher" src={foto4}></img>
+                                <img className="foto-perfil-escolher" src={foto4} alt="icone"/>
                             </div>
                             <div id="5" className="foto-box" onClick={definirFoto(foto5, 5)}>
-                                <img className="foto-perfil-escolher" src={foto5}></img>
+                                <img className="foto-perfil-escolher" src={foto5} alt="icone"/>
                             </div>
                             <div id="6" className="foto-box" onClick={definirFoto(foto6, 6)}>
-                                <img className="foto-perfil-escolher" src={foto6}></img>
+                                <img className="foto-perfil-escolher" src={foto6} alt="icone"/>
                             </div>
                             <div id="7" className="foto-box" onClick={definirFoto(foto7, 7)}>
-                                <img className="foto-perfil-escolher" src={foto7}></img>
+                                <img className="foto-perfil-escolher" src={foto7} alt="icone"/>
                             </div>
                             <div id="8" className="foto-box" onClick={definirFoto(foto8, 8)}>
-                                <img className="foto-perfil-escolher" src={foto8}></img>
+                                <img className="foto-perfil-escolher" src={foto8} alt="icone"/>
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto9, 9)}>
-                                <img className="foto-perfil-escolher" src={foto9}></img>
+                                <img className="foto-perfil-escolher" src={foto9} alt="icone"/>
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto10, 10)}>
-                                <img className="foto-perfil-escolher" src={foto10}></img>
+                                <img className="foto-perfil-escolher" src={foto10} alt="icone"/>
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto11, 11)}>
-                                <img className="foto-perfil-escolher" src={foto11}></img>
+                                <img className="foto-perfil-escolher" src={foto11} alt="icone"/>
                             </div>
                         </div>
                         : null}

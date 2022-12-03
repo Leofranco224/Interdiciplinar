@@ -589,8 +589,6 @@ label {
   width: 20%;
 }
 
-/* Daqui para baixo são dos arquivos Ranking, Sidebar e Perfil */
-
 .ranking-container {
   background-image: linear-gradient(#353535, #141313);
   color: var(--texto-branco);
@@ -599,6 +597,7 @@ label {
   min-height: 100vh;
   text-align: center;
   position: relative;
+  overflow-x: hidden;
 }
 
 .ranking {
@@ -974,7 +973,19 @@ label {
   background-color: var(--inp-color);
   border-radius: 30px;
   padding-left: 5%;
-  border: 3px solid var(--inp-color);
+  color: var(--texto-secundario);
+  border: none;
+}
+
+.username-inpt:hover {
+  border: none;
+  background-color: var(--inp-color);
+  color: var(--texto-secundario);
+}
+
+.username-inpt:focus {
+  border: none;
+  background-color: var(--inp-color);
   color: var(--texto-secundario);
 }
 

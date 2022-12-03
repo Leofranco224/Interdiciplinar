@@ -247,7 +247,7 @@ export default function Ranking(props) {
                     </div>
                 </div>
 
-                <div className="table-area">
+                <div className="table-area mb-5">
                     <table class="table">
                         <thead className="topo-tabela">
                             <tr>
