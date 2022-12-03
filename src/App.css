@@ -22,27 +22,64 @@
 
 .Auth-form-container {
   background-color: var(--bg-color);
-  ;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
 }
 
+.top-login {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 13vh;
+  width: 100%;
+  padding: 2vh;
+}
+
+.logo-login {
+  height: 100%;
+  margin-right: 1%;
+}
+
+.titulo-login {
+  font-size: 80px;
+  color: var(--tema-color);
+  font-weight: 700;
+  margin: 0;
+}
+
 .Auth-form-content {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 65%;
+  flex-direction: column;
+  width: 60vw;
+  height: 100%;
+  background-image: linear-gradient(#353535, #141313);
+  padding-bottom: 5%;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: row;
 }
 
 .Auth-form {
-  width: 40%;
+  width: 60%;
   min-width: 420px;
   padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .Auth-form-title {
@@ -73,9 +110,21 @@
 
 .inpt-dark {
   border: none;
+  color: var(--texto-branco);
   background-color: var(--inp-color);
   border-radius: 30px;
   padding-left: 5%;
+  border: 3px solid var(--inp-color);
+}
+
+.inpt-dark:focus{
+  background-color: #303030;
+  color: var(--texto-branco);
+}
+
+.inpt-dark:hover{
+  border: 3px solid var(--texto-secundario);
+  transition: 0.2s;
 }
 
 .form-check-label {
@@ -89,8 +138,9 @@
 
 .Auth-form-Cadastro {
   background-color: var(--tema-color);
-  height: 100%;
-  width: 35%;
+  width: 40vw;
+  height: 100vh;
+  background-image: linear-gradient(#0d8eb6, #095268);
 }
 
 .cadastro-area {
@@ -122,7 +172,7 @@
 }
 
 .Cadastro-form-container {
-  background-color: var(--bg-color);
+  background-image: linear-gradient(#353535, #141313);
   display: flex;
   flex-direction: row;
   width: 100vw;
@@ -157,7 +207,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   height: 80vh;
   min-width: 700px;
@@ -215,7 +265,7 @@ label {
 }
 
 .escalacao-container {
-  background-color: var(--bg-color);
+  background-image: linear-gradient(#353535, #141313);
   color: var(--texto-branco);
   width: 100vw;
   height: 100vh;
@@ -224,7 +274,6 @@ label {
 }
 
 .escalacao {
-  margin-top: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -240,11 +289,13 @@ label {
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  padding: 2vh;
 }
 
 .icon-menu {
   margin-left: 1vw;
   width: 30px;
+  cursor: pointer;
 }
 
 .icon-area {
@@ -270,6 +321,7 @@ label {
   font-weight: 700;
   width: 95vw;
   text-align: center;
+  margin: 0;
 }
 
 .escalacao-area {
@@ -283,8 +335,9 @@ label {
 }
 
 .pontuacao-area {
+  margin-top: 5vh;
   background-color: var(--inp-color);
-  width: auto;
+  width: 30vw;
   height: 8vh;
   border: 2px solid var(--tema-color);
   border-radius: 5px;
@@ -297,7 +350,6 @@ label {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-  padding: 5vh 6vh 5vh 6vh;
 }
 
 .lane-area {
@@ -316,12 +368,18 @@ label {
   flex-direction: column;
   width: 15vw;
   height: 55vh;
-  background-color: #4d4a4a;
+  background-color: #363535;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.player-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .player-img-area:hover {
@@ -375,8 +433,8 @@ label {
   overflow-y: scroll;
 }
 
-.btn-fechar {
-  width: 50px;
+.botao-fechar {
+  width: 3vw;
   cursor: pointer;
 }
 
@@ -502,42 +560,44 @@ label {
 }
 
 .player-info {
-  padding-top: 10px;
-  padding-left: 20px;
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.player-name, .player-team {
+  margin: 0;
 }
 
 .player-match-info {
-  padding-top: 10px;
-  padding-left: 200px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
 
 .player-total-points {
-  font-size: 450%;
-  padding-top: 10px;
-  padding-left: 100px;
+  font-size: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .pontuacao-gif {
   width: 20%;
 }
 
-/* Daqui para baixo são dos arquivos Ranking, Sidebar e Perfil */
-
 .ranking-container {
-  background-color: var(--bg-color);
+  background-image: linear-gradient(#353535, #141313);
   color: var(--texto-branco);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   text-align: center;
   position: relative;
+  overflow-x: hidden;
 }
 
 .ranking {
@@ -567,16 +627,25 @@ label {
 
 .podio-name {
   margin: 0;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .pontuacao-podio {
   margin: 0;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 900;
 }
 
 .primeiro {
+  background-color: var(--texto-secundario);
+  width: 9vw;
+  height: 9vw;
+  border-radius: 200px;
+  border: 4px solid var(--tema-color);
+}
+
+.segundo-terceiro {
   background-color: var(--texto-secundario);
   width: 7vw;
   height: 7vw;
@@ -584,17 +653,10 @@ label {
   border: 4px solid var(--tema-color);
 }
 
-.segundo-terceiro {
-  background-color: var(--texto-secundario);
-  width: 5vw;
-  height: 5vw;
-  border-radius: 200px;
-  border: 4px solid var(--tema-color);
-}
-
 .colocacao {
   text-decoration: underline;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .table-area {
@@ -648,6 +710,7 @@ label {
 
 .side-option {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   text-decoration: none;
   height: 10%;
@@ -658,6 +721,11 @@ label {
   background-color: #0e7b9c;
   color: var(--texto-branco);
   font-weight: 500;
+}
+
+.side-box {
+  display: flex;
+  justify-content: space-between;
 }
 
 .side-option:hover {
@@ -721,10 +789,11 @@ label {
 }
 
 .perfil-container {
-  background-color: var(--bg-color);
+  background-image: linear-gradient(#353535, #141313);
   color: var(--texto-branco);
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .perfil {
@@ -732,7 +801,6 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 15vh;
 }
 
 .perfil-form {
@@ -759,9 +827,12 @@ label {
 .perfil-imagem {
   background-color: var(--texto-secundario);
   width: 7vw;
+  min-width: 130px;
   height: 7vw;
+  min-height: 130px;
   border-radius: 100px;
   border: 4px solid var(--tema-color);
+  cursor: pointer;
 }
 
 @media (max-width: 1400px) {
@@ -778,3 +849,153 @@ label {
     padding-top: 0;
   }
 }
+
+.error-text{
+  color: red
+}
+
+.escolha-foto-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--inp-color);
+  padding: 4%;
+  width: 100%;
+  width: 45vw;
+  min-width: 700px;
+  height: auto;
+  min-height: 100px;
+  border-radius: 25px;
+  overflow-y: auto;
+}
+
+.foto-box {
+  background-color: var(--texto-secundario);
+  width: 4vw;
+  min-width: 60px;
+  min-height: 60px;
+  height: 4vw;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.chart {
+  margin-right: 2vh;
+  width: 7%;
+}
+
+.foto-perfil {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.foto-perfil-escolher{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.foto-side {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.area-baixo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 50vh;
+}
+
+.btn-escalar {
+  color: var(--texto-branco);
+  background-color: var(--tema-color);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  height: 8vh;
+  width: 20vw;
+  margin-left: 1vw;
+}
+
+.btn-escalar:hover {
+  color: var(--tema-color);
+  background-color: var(--texto-branco);
+}
+
+.btn-escalar-desativado {
+  color: var(--texto-branco);
+  background-color: var(--texto-secundario);
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  height: 8vh;
+  width: 60%;
+  margin-left: 2vw;
+}
+
+.coin {
+  margin-left: 1vh;
+  width: 6%;
+}
+
+.cartola-logo {
+  width: 3%;
+}
+
+.logout-icon {
+  width: 10%;
+  margin-right: 10%;
+}
+
+.ranking-icon {
+  width: 15%;
+  margin-right: 8%;
+}
+
+.escalacao-icon {
+  width: 12%;
+  margin-right: 8%;
+}
+
+.side-text {
+  font-size: 20px;
+}
+
+.username-inpt {
+  border: none;
+  background-color: var(--inp-color);
+  border-radius: 30px;
+  padding-left: 5%;
+  color: var(--texto-secundario);
+  border: none;
+}
+
+.username-inpt:hover {
+  border: none;
+  background-color: var(--inp-color);
+  color: var(--texto-secundario);
+}
+
+.username-inpt:focus {
+  border: none;
+  background-color: var(--inp-color);
+  color: var(--texto-secundario);
+}
+
+.msg-erro {
+  color: red;
+  font-size: 20px;
+}
+
+.erro-box {
+  text-align: center;
+  width: 100%;
+}
+

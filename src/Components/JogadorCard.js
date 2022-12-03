@@ -8,8 +8,6 @@ import JogadorTop from "./Lanes/TopLaners";
 
 export default function JogadorCard(props) {
 
-    console.log("cheguei aqui")
-
     const lane = props.lane
     switch (lane) {
         case 'TOP':
