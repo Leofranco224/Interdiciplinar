@@ -124,6 +124,13 @@ export default function Escalacao(props) {
             },
             method: 'POST'
         })
+
+        const result = await res.json()
+        if(result.status == "false")
+        {
+            console.log(result)
+            window.location.reload();
+        }
     };
 
     async function getPontos() {

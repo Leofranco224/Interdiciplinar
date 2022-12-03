@@ -72,6 +72,36 @@ export default function Perfil(props) {
         checkSession();
     }, []);
 
+    const attPerfil = async event => {
+        event.preventDefault();
+        document.getElementById('msngerro').innerHTML = ""
+        if(event.target.pass.value !== event.target.checkpass.value)
+        {
+            document.getElementById('msngerro').innerHTML = "As senhas inseridas não são iguais."
+            return;
+        }
+    
+        const cookies = new Cookies();
+        const accessToken = cookies.get('access-token')
+        const res = await fetch('https://cartolol-apirest.vercel.app/api/update_user_info', {
+          body: JSON.stringify({
+            jwt: accessToken,
+            email: event.target.email.value,
+            newpass: event.target.pass.value
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+          method: 'POST'
+        })
+        const result = await res.json()
+        console.log(result.status)
+        if (result.status == "true") {
+            window.location.reload();
+        }
+      }
+
     return (
         <div className="perfil-container">
             {showElement ? <Sidebar showOrHide={showOrHide} /> : null}
@@ -86,7 +116,7 @@ export default function Perfil(props) {
             </div>
 
             <div className="perfil">
-                <form className="perfil-form">
+                <form className="perfil-form" onSubmit={attPerfil}>
 
                     <div className="perfil-top">
                         <h3 className="perfil-title mb-5 mt-5">Atualizar perfil</h3>
@@ -112,6 +142,7 @@ export default function Perfil(props) {
 
                     <div className="form-group mt-3 inpt-perfil">
                         <input
+                            readOnly
                             id="username"
                             type="text"
                             className="form-control mt-1 inpt-dark"
@@ -128,6 +159,7 @@ export default function Perfil(props) {
                     </div>
                     <div className="form-group mt-3 inpt-perfil">
                         <input
+                            id="pass"
                             type="password"
                             className="form-control mt-1 inpt-dark"
                             placeholder="Senha"
@@ -135,11 +167,13 @@ export default function Perfil(props) {
                     </div>
                     <div className="form-group mt-3 inpt-perfil">
                         <input
+                            id="checkpass"
                             type="password"
                             className="form-control mt-1 inpt-dark"
                             placeholder="Confirma Senha"
                         />
                     </div>
+                    <div id="msngerro"></div>
                     <div className="btn-area mt-3">
                         <button type="submit" className="btn btn-def">
                             Atualizar
