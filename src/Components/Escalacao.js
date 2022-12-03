@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 import emAlta from '../images/trendUp.png'
 import emBaixa from '../images/trendDown.png'
+import coin from '../images/coin.gif'
+import cartolaImg from '../images/cartolaImagem.png';
 
 export default function Escalacao(props) {
     const [pontosTotAnterior, setPontosTotAnterior] = useState('0');
@@ -24,13 +26,8 @@ export default function Escalacao(props) {
     const [fotoBot, setFotoBot] = useState({});
     const [fotoSup, setFotoSup] = useState({});
 
-
     let simbolos = 0;
     let botaoPontos, pontuacaoTotal = '';
-
-
-
-
 
     async function getMercadoStatus(fromEffect) {
         const res = await fetch('https://cartolol-apirest.vercel.app/api/get_mercado_status', {
@@ -65,7 +62,6 @@ export default function Escalacao(props) {
     async function user() {
         const boolStatus = await getMercadoStatus()
         setStatus(boolStatus)
-
 
         const user = await getPontos()
         console.log(user.flag)
@@ -126,8 +122,7 @@ export default function Escalacao(props) {
         })
 
         const result = await res.json()
-        if(result.status == "false")
-        {
+        if (result.status == "false") {
             console.log(result)
             window.location.reload();
         }
@@ -144,8 +139,6 @@ export default function Escalacao(props) {
         });
         if (rawResponse.status === 200) {
             const content = await rawResponse.json();
-
-
             return Promise.resolve(content);
         }
     };
@@ -167,21 +160,19 @@ export default function Escalacao(props) {
     console.log(status)
     if (status) {
         if (fotoTop.img_url === undefined || fotoJungle.img_url === undefined || fotoMid.img_url === undefined || fotoBot.img_url === undefined || fotoSup.img_url === undefined) {
-            botaoPontos = <button type="submit" className="btn btn-def" >
-
-                Escalar - MAS ESSE NAO FUNCIONA
+            botaoPontos = <button type="submit" className="btn btn-escalar-desativado" >
+                ESCALAR
             </button>
         }
         else {
-            botaoPontos = <button type="submit" className="btn btn-def" onClick={setPontos}>
-                Escalar
+            botaoPontos = <button type="submit" className="btn btn-escalar" onClick={setPontos}>
+                ESCALAR
             </button>
         }
 
 
         if (pontosTot > pontosTotAnterior) {
             simbolos = <img className="chart" src={emAlta} alt="emAlta" />
-
         }
         else {
             simbolos = <img className="chart" src={emBaixa} alt="emBaixa" />
@@ -190,7 +181,7 @@ export default function Escalacao(props) {
             simbolos = ''
         }
 
-        pontuacaoTotal = <p className="pontuacao-text">Pontuação: <span className="pontos">{pontosTot}</span></p>
+        pontuacaoTotal = <p className="pontuacao-text"><span className="pontos">{pontosTot}</span></p>
     }
     else {
         simbolos = <p className="pontuacao-text"><span className="pontos">Mercado Fechado</span></p>
@@ -203,16 +194,17 @@ export default function Escalacao(props) {
             {showElement ? <Sidebar showOrHide={showOrHide} /> : null}
 
             <div className="top">
-                <div className="icon-area">
-                    <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" showOrHide={showOrHide} onClick={showOrHide} />
-                </div>
-
-                <div className="area-text">
-                    <p className="escolha-text">Escolha seu time</p>
-                </div>
+                <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" showOrHide={showOrHide} onClick={showOrHide} />
+                <p className="escolha-text">Escolha seu time</p>
+                <img className="cartola-logo" src={cartolaImg} />
             </div>
 
             <div className="escalacao">
+                <div className="pontuacao-area">
+                    {simbolos}
+                    {pontuacaoTotal}
+                    <img className="coin" src={coin} />
+                </div>
                 <div className="escalacao-area">
                     <Lane laneName="TOP" laneNumber={1}
                         setFotoTop={setFotoTop}
@@ -236,13 +228,6 @@ export default function Escalacao(props) {
                 </div>
 
                 {botaoPontos}
-
-                <div className="pontuacao-area">
-                    {simbolos}
-                    {pontuacaoTotal}
-
-                </div>
-
             </div>
         </div>
     );

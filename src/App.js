@@ -14,10 +14,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Auth />} />
-        <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/Escalacao" element={<Escalacao />} />
-        <Route path="/Ranking" element={<Ranking />} />
-        <Route path="/Perfil" element={<Perfil />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/escalacao" element={<Escalacao />} />
+        <Route path="/ranking" element={<Ranking />} />
+        <Route path="/perfil" element={<Perfil />} />
       </Routes>
     </BrowserRouter>
   )

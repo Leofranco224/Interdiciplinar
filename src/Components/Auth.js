@@ -1,12 +1,11 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
+import cartolaImg from '../images/cartolaImagem.png';
 
 export default function Auth(props) {
 
   const [erro, setErro] = React.useState('')
-  // const [UserName, setUserName] = React.useState('');
-  // const [Senha, setSenha] = React.useState('');
   const cookies = new Cookies();
   const navigate = useNavigate();
 
@@ -35,50 +34,63 @@ export default function Auth(props) {
         sameSite: true,
       })
 
-      navigate("/Escalacao");
+      navigate("/escalacao");
     }
     else {
-      setErro(<p className="error-text">Senha ou nome de usuário inválido</p>)
+      setErro(<p className="msg-erro">Senha ou nome de usuário inválido</p>)
     }
   }
 
   return (
     <div className="Auth-form-container">
+
       <div className="Auth-form-content">
-        <form className="Auth-form" onSubmit={logaUsuario}>
-          <h3 className="Auth-form-title">Bem vindo de volta!</h3>
-          <div className="text-center text-secondary">
-            Entre em sua conta
-          </div>
-          {erro}
-          <div className="form-group mt-3">
-            <input
-              id="username"
-              type="text"
-              className="form-login-control mt-1 inpt-dark"
-              placeholder="Usuário"
-            />
-          </div>
-          <div className="form-group mt-3">
-            <input
-              id="password"
-              type="password"
-              className="form-login-control mt-1 inpt-dark"
-              placeholder="Senha"
-            />
-          </div>
-          <div class="form-check mt-1">
-            <input class="form-check-input inpt-dark inpt-check" type="checkbox" value="" id="flexCheckDefault" />
-            <label class="form-check-label text-secondary" for="flexCheckDefault">
-              lembrar-me
-            </label>
-          </div>
-          <div className="btn-area mt-4">
-            <button type="submit" className="btn btn-def">
-              Entrar
-            </button>
-          </div>
-        </form>
+        <div className="top-login">
+          <img className="logo-login" src={cartolaImg} alt="logo" />
+          <p className="titulo-login">Cartolol</p>
+        </div>
+
+        <div className="form-container">
+          <form className="Auth-form" onSubmit={logaUsuario}>
+            <h3 className="Auth-form-title">Bem vindo de volta!</h3>
+            <div className="text-center text-secondary">
+              Entre em sua conta
+            </div>
+
+            <div className="form-group mt-3">
+              <input
+                id="username"
+                type="text"
+                className="form-login-control mt-1 inpt-dark"
+                placeholder="Usuário"
+              />
+            </div>
+            <div className="form-group mt-3">
+              <input
+                id="password"
+                type="password"
+                className="form-login-control mt-1 inpt-dark"
+                placeholder="Senha"
+              />
+            </div>
+            <div class="form-check mt-1">
+              <input class="form-check-input inpt-dark inpt-check" type="checkbox" value="" id="flexCheckDefault" />
+              <label class="form-check-label text-secondary" for="flexCheckDefault">
+                Lembrar-me
+              </label>
+            </div>
+
+            <div className="erro-box">{erro}</div>
+
+            <div className="btn-area mt-4">
+
+              <button type="submit" className="btn btn-def">
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
+
       </div>
       <div className="Auth-form-Cadastro">
         <div className="cadastro-area">
@@ -87,6 +99,8 @@ export default function Auth(props) {
           <a href="/Cadastro" className="btn btn-light btn-cadastro mt-4">Cadastre-se</a>
         </div>
       </div>
+
+
     </div>
   );
 }
