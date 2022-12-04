@@ -102,6 +102,12 @@ function Sidebar(props) {
         getUsuario();
     }, []);
 
+    function logout()
+    {
+        const cookies = new Cookies();
+        cookies.remove("access-token")
+    }
+
     return (
         <div id="sideNav" class="sidenav">
             <div className="side-top">
@@ -115,7 +121,7 @@ function Sidebar(props) {
                 <a className="side-option" href="/escalacao"><span className="side-text">Escalação</span><img className="escalacao-icon" src={escalacaoIcon} alt="escalacao"/></a>
                 <a className="side-option" href="/ranking"><span className="side-text">Ranking</span><img className="ranking-icon" src={rankingIcon} alt="ranking"/></a>
                 <a className="side-option" href="/perfil"><span className="side-text">Perfil</span><img className="escalacao-icon" src={perfilIcon} alt="perfil"/></a>
-                <a className="side-option" href="/"><span className="side-text">Sair</span><img className="logout-icon" src={logoutIcon} alt="sair"/></a>
+                <a className="side-option" href="/" onClick={logout}><span className="side-text">Sair</span><img className="logout-icon" src={logoutIcon} alt="sair"/></a>
             </div>
         </div>
     );

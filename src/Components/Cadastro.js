@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import cartolaImg from '../images/cartolaImagem.png';
 import loginImg from '../images/cartololLogin.png'
+import loading from '../images/loading-gif.gif';
 
 export default function Cadastro(props) {
 
@@ -14,6 +15,23 @@ export default function Cadastro(props) {
 
   const cadastraUsuario = async event => {
     event.preventDefault();
+    document.getElementById('loadinganim').style.display = 'inline-block'
+    document.getElementById('btntext').innerHTML = ""
+    document.getElementById('msngerro').innerHTML = ""
+    if(event.target.username.value <= 0 || event.target.email.value <= 0 || event.target.password.value <= 0 || event.target.confirm_password.value <= 0)
+    {
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Criar conta"
+      document.getElementById('msngerro').innerHTML = "Existem campos vazios que devem ser preenchidos!"
+      return;
+    }
+    if(event.target.password.value !== event.target.confirm_password.value)
+    {
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Criar conta"
+      document.getElementById('msngerro').innerHTML = "As senhas inseridas não são iguais."
+      return;
+    }
 
     const res = await fetch('https://cartolol-apirest.vercel.app/api/cadastrar', {
       body: JSON.stringify({
@@ -32,6 +50,7 @@ export default function Cadastro(props) {
     if (result.status == "true") {
       navigate("/");
     }
+    
   }
 
   return (
@@ -83,8 +102,10 @@ export default function Cadastro(props) {
               />
             </div>
             <div className="btn-area mt-4">
+            <div id="msngerro" className="msg-erro mt-2"></div>
               <button type="submit" className="btn submit-btn-def">
-                Criar conta
+                <div id='btntext'>Criar conta</div>
+                <img id="loadinganim" className="loading-btn-cadastro" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
               </button>
             </div>
 

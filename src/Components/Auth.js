@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 import cartolaImg from '../images/cartolaImagem.png';
+import loading from '../images/loading-gif.gif';
 
 export default function Auth(props) {
 
@@ -11,6 +12,8 @@ export default function Auth(props) {
 
   const logaUsuario = async event => {
     event.preventDefault();
+    document.getElementById('loadinganim').style.display = 'inline-block'
+    document.getElementById('btntext').innerHTML = ""
     setErro('')
     const res = await fetch('https://cartolol-apirest.vercel.app/api/logar', {
       body: JSON.stringify({
@@ -38,6 +41,8 @@ export default function Auth(props) {
     }
     else {
       setErro(<p className="msg-erro">Senha ou nome de usuário inválido</p>)
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Entrar"
     }
   }
 
@@ -85,7 +90,8 @@ export default function Auth(props) {
             <div className="btn-area mt-4">
 
               <button type="submit" className="btn btn-def">
-                Entrar
+                <div id="btntext">Entrar</div>
+                <img id="loadinganim" className="loading-btn" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
               </button>
             </div>
           </form>

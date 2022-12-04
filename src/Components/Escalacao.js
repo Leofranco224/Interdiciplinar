@@ -9,6 +9,7 @@ import emAlta from '../images/trendUp.png'
 import emBaixa from '../images/trendDown.png'
 import coin from '../images/coin.gif'
 import cartolaImg from '../images/cartolaImagem.png';
+import loading from '../images/loading-gif.gif';
 
 export default function Escalacao(props) {
     const [pontosTotAnterior, setPontosTotAnterior] = useState('0');
@@ -76,7 +77,15 @@ export default function Escalacao(props) {
         }
     }
 
+    function startLoading(id)
+    {
+        document.getElementById('loadinganim').style.display = 'inline-block'
+        document.getElementById(id).innerHTML = ""
+    }
+
     async function setPontos() {
+
+        startLoading("btntext")
         let soma = 0;
 
         soma = parseInt(fotoTop['partida_atual'].pontos) + parseInt(fotoJungle['partida_atual'].pontos) +
@@ -127,6 +136,8 @@ export default function Escalacao(props) {
             console.log(result)
             window.location.reload();
         }
+        document.getElementById('loadinganim').style.display = 'none'
+        document.getElementById('btntext').innerHTML = "ESCALAR"
     };
 
     async function getPontos() {
@@ -167,7 +178,8 @@ export default function Escalacao(props) {
         }
         else {
             botaoPontos = <button type="submit" className="btn btn-escalar" onClick={setPontos}>
-                ESCALAR
+                <div id="btntext">ESCALAR</div>
+                <img id="loadinganim" className="loading-btn-escalacao" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
             </button>
         }
 

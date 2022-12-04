@@ -133,11 +133,27 @@ export default function Perfil(props) {
         checkSession();
     }, []);
 
+    function startLoading(id)
+    {
+        document.getElementById('loadinganim').style.display = 'inline-block'
+        document.getElementById(id).innerHTML = ""
+    }
+
     const attPerfil = async event => {
         event.preventDefault();
+        startLoading("btntext")
         document.getElementById('msngerro').innerHTML = ""
+        if(event.target.email.value <= 0)
+        {
+            document.getElementById('msngerro').innerHTML = "Campo E-mail não pode estar vazio!"
+            document.getElementById('loadinganim').style.display = 'none'
+            document.getElementById('btntext').innerHTML = "Atualizar"
+            return;
+        }
         if (event.target.pass.value !== event.target.checkpass.value) {
             document.getElementById('msngerro').innerHTML = "As senhas inseridas não são iguais."
+            document.getElementById('loadinganim').style.display = 'none'
+            document.getElementById('btntext').innerHTML = "Atualizar"
             return;
         }
 
@@ -275,8 +291,10 @@ export default function Perfil(props) {
                     </div>
                     <div id="msngerro" className="msg-erro mt-2"></div>
                     <div className="btn-area mt-3">
-                        <button type="submit" className="btn btn-def">
-                            Atualizar
+                        <button  type="submit" className="btn btn-def">
+                            <div id="btntext">Atualizar</div>
+                            <img id="loadinganim" className="loading-btn" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
+                            
                         </button>
                     </div>
                 </form >
