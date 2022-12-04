@@ -20,7 +20,7 @@ import foto10 from '../images/perfilFotos/10.png';
 import foto11 from '../images/perfilFotos/11.png';
 
 export default function Ranking(props) {
-
+    document.title = "Cartolol - Ranking";
     const cookies = new Cookies();
     const accessToken = cookies.get('access-token')
 

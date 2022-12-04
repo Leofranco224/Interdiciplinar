@@ -12,6 +12,7 @@ import cartolaImg from '../images/cartolaImagem.png';
 import loading from '../images/loading-gif.gif';
 
 export default function Escalacao(props) {
+    document.title = "Cartolol - Escalação";
     const [pontosTotAnterior, setPontosTotAnterior] = useState('0');
     const navigate = useNavigate();
     const cookies = new Cookies();

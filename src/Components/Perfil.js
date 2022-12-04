@@ -21,7 +21,7 @@ import foto11 from '../images/perfilFotos/11.png';
 
 
 export default function Perfil(props) {
-
+    document.title = "Cartolol - Perfil";
     const [showElement, setShowElement] = useState(false);
     const [showFotos, setShowFotos] = useState(false);
     const [foto, setFoto] = useState(loading);

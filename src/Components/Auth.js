@@ -5,7 +5,7 @@ import cartolaImg from '../images/cartolaImagem.png';
 import loading from '../images/loading-gif.gif';
 
 export default function Auth(props) {
-
+  document.title = "Cartolol - Login";
   const [erro, setErro] = React.useState('')
   const cookies = new Cookies();
   const navigate = useNavigate();
@@ -47,6 +47,7 @@ export default function Auth(props) {
   }
 
   return (
+    
     <div className="Auth-form-container">
 
       <div className="Auth-form-content">

@@ -5,7 +5,7 @@ import loginImg from '../images/cartololLogin.png'
 import loading from '../images/loading-gif.gif';
 
 export default function Cadastro(props) {
-
+  document.title = "Cartolol - Cadastrar";
   // const [UserName, setUserName] = React.useState('');
   // const [Email, setEmail] = React.useState('');
   // const [Senha, setSenha] = React.useState('');
