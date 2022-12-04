@@ -106,8 +106,6 @@ export default function Auth(props) {
           <a href="/Cadastro" className="btn btn-light btn-cadastro mt-4">Cadastre-se</a>
         </div>
       </div>
-
-
     </div>
   );
 }
