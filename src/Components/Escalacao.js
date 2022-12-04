@@ -19,7 +19,7 @@ export default function Escalacao(props) {
     //MANO ISSO AQUI É O JOGADOR INTEIRO IGNORA QUE 
     //TA ESCRITO SETFOTO NAO TEM FOTO PRA PEGAR A FOTO TEM QUE ACESSAR O OBJ
     const [showElement, setShowElement] = useState(false);
-    const [pontosTot, setPontosTot] = useState('');
+    const [pontosTot, setPontosTot] = useState('0');
     const [fotoTop, setFotoTop] = useState({});
     const [fotoJungle, setFotoJungle] = useState({});
     const [fotoMid, setFotoMid] = useState({});
@@ -64,7 +64,7 @@ export default function Escalacao(props) {
         setStatus(boolStatus)
 
         const user = await getPontos()
-        console.log(user.flag)
+        console.log(user)
         if (parseInt(user.flag) == 1) {
             setFotoTop(user.id_jogtop)
             setFotoJungle(user.id_jogjungle)
@@ -72,6 +72,7 @@ export default function Escalacao(props) {
             setFotoBot(user.id_jogbot)
             setFotoSup(user.id_jogsup)
             setPontosTot(user.ptos)
+            setPontosTotAnterior(user.last_ptos)
         }
     }
 
@@ -177,7 +178,7 @@ export default function Escalacao(props) {
         else {
             simbolos = <img className="chart" src={emBaixa} alt="emBaixa" />
         }
-        if (pontosTot == 0) {
+        if (pontosTot == pontosTotAnterior) {
             simbolos = ''
         }
 
