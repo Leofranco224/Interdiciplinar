@@ -229,21 +229,21 @@ export default function Ranking(props) {
                         <p className="colocacao">2º LUGAR</p>
                         <div className="segundo-terceiro"><img className="foto-perfil" src={fotoSegundo} alt="foto"></img></div>
                         <p className="podio-name">{usuarios[1]?.username}</p>
-                        <p className="pontuacao-podio">{usuarios[1]?.ptos} pts</p>
+                        <p className="pontuacao-podio">{usuarios[1]?.ptos_totais} pts</p>
                     </div>
 
                     <div className="podio-group">
                         <p className="colocacao">1º LUGAR</p>
                         <div className="primeiro"><img className="foto-perfil" src={fotoPrimeiro} alt="foto"></img></div>
                         <p className="podio-name">{usuarios[0]?.username}</p>
-                        <p className="pontuacao-podio">{usuarios[0]?.ptos} pts</p>
+                        <p className="pontuacao-podio">{usuarios[0]?.ptos_totais} pts</p>
                     </div>
 
                     <div className="podio-group">
                         <p className="colocacao">3º LUGAR</p>
                         <div className="segundo-terceiro"><img className="foto-perfil" src={fotoTerceiro} alt="foto"></img></div>
                         <p className="podio-name">{usuarios[2]?.username}</p>
-                        <p className="pontuacao-podio">{usuarios[2]?.ptos} pts</p>
+                        <p className="pontuacao-podio">{usuarios[2]?.ptos_totais} pts</p>
                     </div>
                 </div>
 
@@ -261,7 +261,7 @@ export default function Ranking(props) {
                                 <tr key={index}>
                                     <th >{index + 4}º</th>
                                     <td>{usuario.username}</td>
-                                    <td>{usuario.ptos}</td>
+                                    <td>{usuario.ptos_totais}</td>
                                 </tr>
                             )}
                         </tbody>
