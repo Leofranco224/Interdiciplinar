@@ -29,7 +29,7 @@ export default function Escalacao(props) {
     const [fotoSup, setFotoSup] = useState({});
 
     let simbolos = 0;
-    let botaoPontos, pontuacaoTotal = '';
+    let botaoPontos, pontuacaoTotal,coinGif = '';
 
     async function getMercadoStatus(fromEffect) {
         const res = await fetch('https://cartolol-apirest.vercel.app/api/get_mercado_status', {
@@ -196,11 +196,13 @@ export default function Escalacao(props) {
         }
 
         pontuacaoTotal = <p className="pontuacao-text"><span className="pontos">{pontosTot}</span></p>
+        coinGif = <img className="coin" src={coin} />
     }
     else {
         simbolos = <p className="pontuacao-text"><span className="pontos">Mercado Fechado</span></p>
         pontuacaoTotal = ''
         botaoPontos = ''
+        coinGif = ''
     }
 
     return (
@@ -217,7 +219,7 @@ export default function Escalacao(props) {
                 <div className="pontuacao-area">
                     {simbolos}
                     {pontuacaoTotal}
-                    <img className="coin" src={coin} />
+                    {coinGif}
                 </div>
                 <div className="escalacao-area">
                     <Lane laneName="TOP" laneNumber={1}
