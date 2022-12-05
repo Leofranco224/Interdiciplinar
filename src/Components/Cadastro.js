@@ -13,11 +13,24 @@ export default function Cadastro(props) {
   
   const navigate = useNavigate();
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const cadastraUsuario = async event => {
     event.preventDefault();
+    document.getElementById('msngerro').innerHTML = ""
+    if(validateEmail(event.target.email.value) == null)
+    {
+      document.getElementById('msngerro').innerHTML = "Email inserido não é valido!"
+      return;
+    }
     document.getElementById('loadinganim').style.display = 'inline-block'
     document.getElementById('btntext').innerHTML = ""
-    document.getElementById('msngerro').innerHTML = ""
     if(event.target.username.value <= 0 || event.target.email.value <= 0 || event.target.password.value <= 0 || event.target.confirm_password.value <= 0)
     {
       document.getElementById('loadinganim').style.display = 'none'

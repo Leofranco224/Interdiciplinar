@@ -45,6 +45,14 @@ export default function Perfil(props) {
         }
     }
 
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
+
     async function checkSession() {
         const cookies = new Cookies();
         const accessToken = cookies.get('access-token')
@@ -133,18 +141,21 @@ export default function Perfil(props) {
         checkSession();
     }, []);
 
-    function startLoading(id)
-    {
+    function startLoading(id) {
         document.getElementById('loadinganim').style.display = 'inline-block'
         document.getElementById(id).innerHTML = ""
     }
 
     const attPerfil = async event => {
         event.preventDefault();
-        startLoading("btntext")
         document.getElementById('msngerro').innerHTML = ""
-        if(event.target.email.value <= 0)
-        {
+        if (validateEmail(event.target.email.value) == null) {
+            document.getElementById('msngerro').innerHTML = "Email inserido não é valido!"
+            return;
+        }
+
+        startLoading("btntext")
+        if (event.target.email.value <= 0) {
             document.getElementById('msngerro').innerHTML = "Campo E-mail não pode estar vazio!"
             document.getElementById('loadinganim').style.display = 'none'
             document.getElementById('btntext').innerHTML = "Atualizar"
@@ -204,7 +215,7 @@ export default function Perfil(props) {
             <div className="top">
                 <img className="icon-menu" src={menuIcon} alt="menu-hamburguer" showOrHide={showOrHide} onClick={showOrHide} />
                 <p className="escolha-text">Perfil</p>
-                <img className="cartola-logo" src={cartolaImg} alt="logo"/>
+                <img className="cartola-logo" src={cartolaImg} alt="logo" />
             </div>
 
             <div className="perfil">
@@ -218,40 +229,40 @@ export default function Perfil(props) {
                     {showFotos ?
                         <div className="escolha-foto-area mt-3">
                             <div id="0" className="foto-box" onClick={definirFoto(foto0, 0)}>
-                                <img className="foto-perfil-escolher" src={foto0} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto0} alt="icone" />
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto1, 1)}>
-                                <img className="foto-perfil-escolher" src={foto1} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto1} alt="icone" />
                             </div>
                             <div id="2" className="foto-box" onClick={definirFoto(foto2, 2)}>
-                                <img className="foto-perfil-escolher" src={foto2} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto2} alt="icone" />
                             </div>
                             <div id="3" className="foto-box" onClick={definirFoto(foto3, 3)}>
-                                <img className="foto-perfil-escolher" src={foto3} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto3} alt="icone" />
                             </div>
                             <div id="4" className="foto-box" onClick={definirFoto(foto4, 4)}>
-                                <img className="foto-perfil-escolher" src={foto4} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto4} alt="icone" />
                             </div>
                             <div id="5" className="foto-box" onClick={definirFoto(foto5, 5)}>
-                                <img className="foto-perfil-escolher" src={foto5} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto5} alt="icone" />
                             </div>
                             <div id="6" className="foto-box" onClick={definirFoto(foto6, 6)}>
-                                <img className="foto-perfil-escolher" src={foto6} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto6} alt="icone" />
                             </div>
                             <div id="7" className="foto-box" onClick={definirFoto(foto7, 7)}>
-                                <img className="foto-perfil-escolher" src={foto7} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto7} alt="icone" />
                             </div>
                             <div id="8" className="foto-box" onClick={definirFoto(foto8, 8)}>
-                                <img className="foto-perfil-escolher" src={foto8} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto8} alt="icone" />
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto9, 9)}>
-                                <img className="foto-perfil-escolher" src={foto9} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto9} alt="icone" />
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto10, 10)}>
-                                <img className="foto-perfil-escolher" src={foto10} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto10} alt="icone" />
                             </div>
                             <div id="1" className="foto-box" onClick={definirFoto(foto11, 11)}>
-                                <img className="foto-perfil-escolher" src={foto11} alt="icone"/>
+                                <img className="foto-perfil-escolher" src={foto11} alt="icone" />
                             </div>
                         </div>
                         : null}
@@ -291,10 +302,10 @@ export default function Perfil(props) {
                     </div>
                     <div id="msngerro" className="msg-erro mt-2"></div>
                     <div className="btn-area mt-3">
-                        <button  type="submit" className="btn btn-def">
+                        <button type="submit" className="btn btn-def">
                             <div id="btntext">Atualizar</div>
                             <img id="loadinganim" className="loading-btn" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
-                            
+
                         </button>
                     </div>
                 </form >
