@@ -29,7 +29,7 @@ export default function Escalacao(props) {
     const [fotoSup, setFotoSup] = useState({});
 
     let simbolos = 0;
-    let botaoPontos, pontuacaoTotal,coinGif = '';
+    let botaoPontos, pontuacaoTotal, coinGif = '';
 
     async function getMercadoStatus(fromEffect) {
         const res = await fetch('https://cartolol-apirest.vercel.app/api/get_mercado_status', {
@@ -78,8 +78,7 @@ export default function Escalacao(props) {
         }
     }
 
-    function startLoading(id)
-    {
+    function startLoading(id) {
         document.getElementById('loadinganim').style.display = 'inline-block'
         document.getElementById(id).innerHTML = ""
     }
@@ -117,7 +116,7 @@ export default function Escalacao(props) {
         const res = await fetch('https://cartolol-apirest.vercel.app/api/update_user_lanes', {
             body: JSON.stringify({
                 jwt: accessToken,
-                ptos: soma,
+                ptos: 0,
                 flag: 1,
                 id_jogtop: fotoTop.id,
                 id_jogjungle: fotoJungle.id,
