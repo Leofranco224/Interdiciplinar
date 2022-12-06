@@ -131,7 +131,7 @@ export default function Cadastro(props) {
             <br></br>
             <div className='flex align-center justify-left pb-4'>
                 <ReCAPTCHA
-                  sitekey="6Ld-bsshAAAAADhVRJIv-u6dVQgK4JbxG5xMJ3CR"
+                  sitekey="6Lc5yl0jAAAAAG287WruuwJC9SN-77V06HsUL5P8"
                   onChange={onCaptchaDone}
                 />
               </div>
