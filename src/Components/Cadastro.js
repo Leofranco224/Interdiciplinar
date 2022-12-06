@@ -13,7 +13,7 @@ export default function Cadastro(props) {
   // const [Email, setEmail] = React.useState('');
   // const [Senha, setSenha] = React.useState('');
   // const [ConfirmaSenha, setConfirmaSenha] = React.useState('');
-  
+
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -28,27 +28,23 @@ export default function Cadastro(props) {
     event.preventDefault();
     document.getElementById('msngerro').innerHTML = ""
 
-    if(verificado == false)
-    {
+    if (verificado == false) {
       document.getElementById('msngerro').innerHTML = "Responda o captcha para continuar."
       return;
     }
-    if(validateEmail(event.target.email.value) == null)
-    {
-      document.getElementById('msngerro').innerHTML = "Email inserido não é valido!"
+    if (validateEmail(event.target.email.value) == null) {
+      document.getElementById('msngerro').innerHTML = "Email inserido não é válido!"
       return;
     }
     document.getElementById('loadinganim').style.display = 'inline-block'
     document.getElementById('btntext').innerHTML = ""
-    if(event.target.username.value <= 0 || event.target.email.value <= 0 || event.target.password.value <= 0 || event.target.confirm_password.value <= 0)
-    {
+    if (event.target.username.value <= 0 || event.target.email.value <= 0 || event.target.password.value <= 0 || event.target.confirm_password.value <= 0) {
       document.getElementById('loadinganim').style.display = 'none'
       document.getElementById('btntext').innerHTML = "Criar conta"
       document.getElementById('msngerro').innerHTML = "Existem campos vazios que devem ser preenchidos!"
       return;
     }
-    if(event.target.password.value !== event.target.confirm_password.value)
-    {
+    if (event.target.password.value !== event.target.confirm_password.value) {
       document.getElementById('loadinganim').style.display = 'none'
       document.getElementById('btntext').innerHTML = "Criar conta"
       document.getElementById('msngerro').innerHTML = "As senhas inseridas não são iguais."
@@ -72,13 +68,22 @@ export default function Cadastro(props) {
     if (result.status == "true") {
       navigate("/");
     }
-    
+    else {
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Criar conta"
+      document.getElementById('msngerro').innerHTML = "Esse nome de usuário não está disponivel."
+      return;
+    }
+
   }
 
-  function onCaptchaDone()
-      {
-        verificado = true;
-      }
+  function onCaptchaDone() {
+    verificado = true;
+  }
+
+  function onCaptchaExpired() {
+    verificado = false;
+  }
 
   return (
     <div className="Cadastro-form-container" >
@@ -129,14 +134,15 @@ export default function Cadastro(props) {
               />
             </div>
             <br></br>
-            <div className='flex align-center justify-left pb-4'>
-                <ReCAPTCHA
-                  sitekey="6Lc5yl0jAAAAAG287WruuwJC9SN-77V06HsUL5P8"
-                  onChange={onCaptchaDone}
-                />
-              </div>
-            <div className="btn-area mt-4">
-            <div id="msngerro" className="msg-erro mt-2"></div>
+            <div className='flex align-center justify-left'>
+              <ReCAPTCHA
+                sitekey="6Lc5yl0jAAAAAG287WruuwJC9SN-77V06HsUL5P8"
+                onChange={onCaptchaDone}
+                onExpired={onCaptchaExpired}
+              />
+            </div>
+            <div className="btn-area mt-2">
+              <div id="msngerro" className="msg-erro mb-2" ></div>
               <button type="submit" className="btn submit-btn-def">
                 <div id='btntext'>Criar conta</div>
                 <img id="loadinganim" className="loading-btn-cadastro" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
