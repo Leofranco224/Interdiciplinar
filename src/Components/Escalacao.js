@@ -137,7 +137,7 @@ export default function Escalacao(props) {
             window.location.reload();
         }
         document.getElementById('loadinganim').style.display = 'none'
-        document.getElementById('btntext').innerHTML = "ESCALAR"
+        document.getElementById('btntext').innerHTML = "ESCALADO!"
     };
 
     async function getPontos() {
@@ -180,6 +180,7 @@ export default function Escalacao(props) {
             botaoPontos = <button type="submit" className="btn btn-escalar" onClick={setPontos}>
                 <div id="btntext">ESCALAR</div>
                 <img id="loadinganim" className="loading-btn-escalacao" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
+                
             </button>
         }
 

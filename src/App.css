@@ -910,6 +910,12 @@ label {
   border-radius: 100px;
 }
 
+.check-icon-escalacao {
+  width: 15%;
+  height: 70%;
+  border-radius: 100px;
+}
+
 .loading-btn-cadastro {
   width: 10%;
   height: 10%;
