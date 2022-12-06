@@ -87,19 +87,15 @@ export default function Perfil(props) {
             if (result.status == "true") {
                 switch (result.profile_pic) {
                     case 0:
-                        console.log("cheguei 0")
                         setFoto(foto0)
                         break;
                     case 1:
-                        console.log("cheguei 1")
                         setFoto(foto1)
                         break;
                     case 2:
-                        console.log("cheguei 2")
                         setFoto(foto2)
                         break;
                     case 3:
-                        console.log("cheguei 3")
                         setFoto(foto3)
                         break;
                     case 4:
@@ -151,6 +147,20 @@ export default function Perfil(props) {
         document.getElementById('msngerro').innerHTML = ""
         if (validateEmail(event.target.email.value) == null) {
             document.getElementById('msngerro').innerHTML = "Email inserido não é valido!"
+            return;
+        }
+
+        if (String(event.target.email.value).length > 40) {
+            document.getElementById('msngerro').innerHTML = "Email não pode ter mais que 40 caracteres"
+            document.getElementById('loadinganim').style.display = 'none'
+            document.getElementById('btntext').innerHTML = "Atualizar"
+            return;
+        }
+
+        if (String(event.target.pass.value).length > 24) {
+            document.getElementById('msngerro').innerHTML = "Senha não pode ter mais que 24 caracteres"
+            document.getElementById('loadinganim').style.display = 'none'
+            document.getElementById('btntext').innerHTML = "Atualizar"
             return;
         }
 

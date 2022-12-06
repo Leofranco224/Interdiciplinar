@@ -67,6 +67,14 @@ export default function Cadastro(props) {
       return;
     }
 
+    if(String(event.target.password.value).length > 24)
+    {
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Criar conta"
+      document.getElementById('msngerro').innerHTML = "Senha não pode ter mais que 24 caracteres"
+      return;
+    }
+
     const res = await fetch('https://cartolol-apirest.vercel.app/api/cadastrar', {
       body: JSON.stringify({
         username: event.target.username.value,
