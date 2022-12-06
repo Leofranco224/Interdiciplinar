@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import cartolaImg from '../images/cartolaImagem.png';
 import loginImg from '../images/cartololLogin.png'
 import loading from '../images/loading-gif.gif';
+import ReCAPTCHA from "react-google-recaptcha";
+
+var verificado = false;
 
 export default function Cadastro(props) {
   document.title = "Cartolol - Cadastrar";
@@ -24,6 +27,12 @@ export default function Cadastro(props) {
   const cadastraUsuario = async event => {
     event.preventDefault();
     document.getElementById('msngerro').innerHTML = ""
+
+    if(verificado == false)
+    {
+      document.getElementById('msngerro').innerHTML = "Responda o captcha para continuar."
+      return;
+    }
     if(validateEmail(event.target.email.value) == null)
     {
       document.getElementById('msngerro').innerHTML = "Email inserido não é valido!"
@@ -65,6 +74,11 @@ export default function Cadastro(props) {
     }
     
   }
+
+  function onCaptchaDone()
+      {
+        verificado = true;
+      }
 
   return (
     <div className="Cadastro-form-container" >
@@ -114,6 +128,13 @@ export default function Cadastro(props) {
                 placeholder="Confirma Senha"
               />
             </div>
+            <br></br>
+            <div className='flex align-center justify-left pb-4'>
+                <ReCAPTCHA
+                  sitekey="6Ld-bsshAAAAADhVRJIv-u6dVQgK4JbxG5xMJ3CR"
+                  onChange={onCaptchaDone}
+                />
+              </div>
             <div className="btn-area mt-4">
             <div id="msngerro" className="msg-erro mt-2"></div>
               <button type="submit" className="btn submit-btn-def">
