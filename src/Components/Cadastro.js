@@ -51,6 +51,22 @@ export default function Cadastro(props) {
       return;
     }
 
+    if(String(event.target.username.value).length > 24)
+    {
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Criar conta"
+      document.getElementById('msngerro').innerHTML = "Nome de usuário não pode ter mais que 24 caracteres"
+      return;
+    }
+
+    if(String(event.target.email.value).length > 24)
+    {
+      document.getElementById('loadinganim').style.display = 'none'
+      document.getElementById('btntext').innerHTML = "Criar conta"
+      document.getElementById('msngerro').innerHTML = "Email não pode ter mais que 24 caracteres"
+      return;
+    }
+
     const res = await fetch('https://cartolol-apirest.vercel.app/api/cadastrar', {
       body: JSON.stringify({
         username: event.target.username.value,
