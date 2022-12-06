@@ -63,7 +63,7 @@ export default function Cadastro(props) {
     {
       document.getElementById('loadinganim').style.display = 'none'
       document.getElementById('btntext').innerHTML = "Criar conta"
-      document.getElementById('msngerro').innerHTML = "Email não pode ter mais que 24 caracteres"
+      document.getElementById('msngerro').innerHTML = "Email não pode ter mais que 40 caracteres"
       return;
     }
 
