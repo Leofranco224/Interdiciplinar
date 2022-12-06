@@ -59,7 +59,7 @@ export default function Cadastro(props) {
       return;
     }
 
-    if(String(event.target.email.value).length > 24)
+    if(String(event.target.email.value).length > 40)
     {
       document.getElementById('loadinganim').style.display = 'none'
       document.getElementById('btntext').innerHTML = "Criar conta"
