@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
 import cartolaImg from '../images/cartolaImagem.png';
 import loading from '../images/loading-gif.gif';
-
+import { login } from "./API/Endpoints";
 export default function Auth(props) {
   document.title = "Cartolol - Login";
   const [erro, setErro] = React.useState('')
@@ -15,19 +15,8 @@ export default function Auth(props) {
     document.getElementById('loadinganim').style.display = 'inline-block'
     document.getElementById('btntext').innerHTML = ""
     setErro('')
-    const res = await fetch('https://cartolol-apirest.vercel.app/api/logar', {
-      body: JSON.stringify({
-        username: event.target.username.value,
-        senha: event.target.password.value
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      method: 'POST'
-    })
-    const result = await res.json()
-    console.log(result.status)
+    const result = await login(event.target.username.value,event.target.password.value)
+    
     if (result.status == "true") {
       //Setar cookies de autenticação
       const age = 60 * 60 * 24 * 30 * 1000 //Similar ao Remember Me (da pra implementar isso se quiser)

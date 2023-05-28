@@ -4,7 +4,7 @@ import cartolaImg from '../images/cartolaImagem.png';
 import loginImg from '../images/cartololLogin.png'
 import loading from '../images/loading-gif.gif';
 import ReCAPTCHA from "react-google-recaptcha";
-
+import { cadastro } from "./API/Endpoints";
 var verificado = false;
 
 export default function Cadastro(props) {
@@ -75,19 +75,12 @@ export default function Cadastro(props) {
       return;
     }
 
-    const res = await fetch('https://cartolol-apirest.vercel.app/api/cadastrar', {
-      body: JSON.stringify({
-        username: event.target.username.value,
-        email: event.target.email.value,
-        senha: event.target.password.value
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      method: 'POST'
-    })
-    const result = await res.json()
+    const result = await cadastro(
+      event.target.username.value,
+      event.target.email.value,
+      event.target.password.value
+      )
+
     console.log(result.status)
     if (result.status == "true") {
       navigate("/");
