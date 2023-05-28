@@ -18,6 +18,7 @@ import foto8 from '../images/perfilFotos/8.png';
 import foto9 from '../images/perfilFotos/9.png';
 import foto10 from '../images/perfilFotos/10.png';
 import foto11 from '../images/perfilFotos/11.png';
+import { checkSession, getUsuarios } from "./API/Endpoints";
 
 export default function Ranking(props) {
     document.title = "Cartolol - Ranking";
@@ -41,25 +42,10 @@ export default function Ranking(props) {
     }
 
     async function setRanking() {
-        let data = await getUsuarios();
-        await setUsuarios(data['ranking']);
-        await setarFoto(data['ranking'])
+        let data = await getUsuarios(accessToken);
+        setUsuarios(data['ranking']);
+        setarFoto(data['ranking'])
     }
-
-    async function getUsuarios() {
-        const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_ranking', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ jwt: accessToken })
-        });
-        if (rawResponse.status === 200) {
-            const content = await rawResponse.json();
-            return content;
-        }
-    };
 
     function setarFoto(usuarios) {
         switch (usuarios[0]?.profile_pic) {
@@ -189,27 +175,8 @@ export default function Ranking(props) {
         }
     }
 
-    async function checkSession() {
-        const cookies = new Cookies();
-        const accessToken = cookies.get('access-token')
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/check_session', {
-            body: JSON.stringify({
-                jwt: accessToken
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-        const result = await res.json()
-        if (result.status == "false") {
-            navigate("/");
-        }
-    }
-
     useEffect(() => {
-        checkSession();
+        checkSession(accessToken)
         setRanking();
     }, []);
 

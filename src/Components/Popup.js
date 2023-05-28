@@ -2,21 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import JogadorCard from "./JogadorCard";
 import fecharIcon from '../images/botao-fechar.png'
-
-async function getJogadores(number) {
-    const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_players_list', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ lane: number })
-    });
-    if (rawResponse.status === 200) {
-        const content = await rawResponse.json();
-        return content;
-    }
-};
+import { getJogadores } from "./API/Endpoints";
 
 export default function Popup(props) {
 
@@ -42,7 +28,7 @@ export default function Popup(props) {
             <div className="lane-area mb-3">
                 <img className="popup-img" src={props.laneIcon} alt="adicionar" />
                 <p className="lane-name">{props.laneName}</p>
-                <img src={fecharIcon} className="botao-fechar" onClick={props.showOrHide}/>
+                <img src={fecharIcon} className="botao-fechar" onClick={props.showOrHide} />
             </div>
 
             {jogadores.map((jogador, index) =>

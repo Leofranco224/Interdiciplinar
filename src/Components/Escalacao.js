@@ -10,6 +10,7 @@ import emBaixa from '../images/trendDown.png'
 import coin from '../images/coin.gif'
 import cartolaImg from '../images/cartolaImagem.png';
 import loading from '../images/loading-gif.gif';
+import { mercadoStatus, checkSession, getPontos, updateUserLanes } from "./API/Endpoints";
 
 export default function Escalacao(props) {
     document.title = "Cartolol - Escalação";
@@ -31,41 +32,11 @@ export default function Escalacao(props) {
     let simbolos = 0;
     let botaoPontos, pontuacaoTotal, coinGif = '';
 
-    async function getMercadoStatus(fromEffect) {
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/get_mercado_status', {
-            body: JSON.stringify({
-                jwt: accessToken
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-        const result = await res.json()
-        console.log(result)
-
-        if (result.status == "false") {
-            return false
-        }
-        else {
-            if (result.is_fechado == 0) {
-                return true
-            }
-            else {
-                navigate("/Escalacao");
-                return false
-
-            }
-        }
-
-    }
-
     async function user() {
-        const boolStatus = await getMercadoStatus()
+        const boolStatus = await mercadoStatus(accessToken)
         setStatus(boolStatus)
 
-        const user = await getPontos()
+        const user = await getPontos(accessToken)
         console.log(user)
         if (parseInt(user.flag) == 1) {
             setFotoTop(user.id_jogtop)
@@ -84,76 +55,29 @@ export default function Escalacao(props) {
     }
 
     async function setPontos() {
-
+        console.log("MACACOOOOOOOOOOOO")
         startLoading("btntext")
         let soma = 0;
 
         soma = parseInt(fotoTop['partida_atual'].pontos) + parseInt(fotoJungle['partida_atual'].pontos) +
             parseInt(fotoMid['partida_atual'].pontos) + parseInt(fotoBot['partida_atual'].pontos) + parseInt(fotoSup['partida_atual'].pontos);
-        await update_user_lanes(soma);
-        getPontos().then(data => { setPontosTot(data['ptos']) })
-    }
 
-    async function checkSession() {
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/check_session', {
-            body: JSON.stringify({
-                jwt: accessToken
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-        const result = await res.json()
-        //Chamar API que verifica
-        if (result.status == "false") {
-            navigate("/");
+        const fotos = {
+            fotoTop: fotoTop,
+            fotoJungle: fotoJungle,
+            fotoMid: fotoMid,
+            fotoBot: fotoBot,
+            fotoSup: fotoSup,
         }
-    };
+        const result = await updateUserLanes(accessToken, fotos);
 
-    async function update_user_lanes(soma) {
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/update_user_lanes', {
-            body: JSON.stringify({
-                jwt: accessToken,
-                ptos: 0,
-                flag: 1,
-                id_jogtop: fotoTop.id,
-                id_jogjungle: fotoJungle.id,
-                id_jogmid: fotoMid.id,
-                id_jogbot: fotoBot.id,
-                id_jogsup: fotoSup.id,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-
-        const result = await res.json()
         if (result.status == "false") {
-            console.log(result)
             window.location.reload();
         }
         document.getElementById('loadinganim').style.display = 'none'
         document.getElementById('btntext').innerHTML = "ESCALADO!"
-    };
-
-    async function getPontos() {
-        const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ jwt: accessToken })
-        });
-        if (rawResponse.status === 200) {
-            const content = await rawResponse.json();
-            return Promise.resolve(content);
-        }
-    };
+        getPontos(accessToken).then(data => { setPontosTot(data['ptos']) })
+    }
 
     function showOrHide() {
         if (showElement) {
@@ -165,7 +89,7 @@ export default function Escalacao(props) {
     };
 
     useEffect(() => {
-        checkSession();
+        checkSession(accessToken);
         user();
     }, []);
 
@@ -180,7 +104,7 @@ export default function Escalacao(props) {
             botaoPontos = <button type="submit" className="btn btn-escalar" onClick={setPontos}>
                 <div id="btntext">ESCALAR</div>
                 <img id="loadinganim" className="loading-btn-escalacao" src={loading} alt="foto" onLoad={(event) => event.target.style.display = 'none'}></img>
-                
+
             </button>
         }
 

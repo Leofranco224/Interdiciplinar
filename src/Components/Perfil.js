@@ -18,6 +18,7 @@ import foto8 from '../images/perfilFotos/8.png';
 import foto9 from '../images/perfilFotos/9.png';
 import foto10 from '../images/perfilFotos/10.png';
 import foto11 from '../images/perfilFotos/11.png';
+import { checkSession, getUserInfo, updateProfilePic, updateUserInfo } from "./API/Endpoints";
 
 
 export default function Perfil(props) {
@@ -53,37 +54,11 @@ export default function Perfil(props) {
             );
     };
 
-    async function checkSession() {
+    async function loadProfile() {
         const cookies = new Cookies();
         const accessToken = cookies.get('access-token')
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/check_session', {
-            body: JSON.stringify({
-                jwt: accessToken
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-        const result = await res.json()
-        //Chamar API que verifica
-        if (result.status == "false") {
-            navigate("/");
-        }
-        else //Carregar as info do usuario
-        {
-            const res = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
-                body: JSON.stringify({
-                    jwt: accessToken
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                method: 'POST'
-            })
-            const result = await res.json()
+        if (checkSession(accessToken)) {
+            const result = await getUserInfo(accessToken)
             if (result.status == "true") {
                 switch (result.profile_pic) {
                     case 0:
@@ -134,7 +109,7 @@ export default function Perfil(props) {
     }
 
     useEffect(() => {
-        checkSession();
+        loadProfile();
     }, []);
 
     function startLoading(id) {
@@ -180,19 +155,7 @@ export default function Perfil(props) {
 
         const cookies = new Cookies();
         const accessToken = cookies.get('access-token')
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/update_user_info', {
-            body: JSON.stringify({
-                jwt: accessToken,
-                email: event.target.email.value,
-                newpass: event.target.pass.value
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-        const result = await res.json()
+        const result = await updateUserInfo(accessToken, event.target.email.value, event.target.pass.value)
         console.log(result.status)
         if (result.status == "true") {
             window.location.reload();
@@ -204,18 +167,7 @@ export default function Perfil(props) {
         setFoto(aux)
         const cookies = new Cookies();
         const accessToken = cookies.get('access-token')
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/update_profile_pic', {
-            body: JSON.stringify({
-                jwt: accessToken,
-                pic_id: id,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-        const result = await res.json()
+        await updateProfilePic(accessToken, id)
     }
 
     return (
