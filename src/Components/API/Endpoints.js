@@ -81,7 +81,7 @@ export async function checkSession(accessToken) {
   else
     return true
 }
-export async function getPontos(accessToken) {
+export async function getPontos(accessToken, cookies) {
   const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
     method: 'POST',
     headers: {
@@ -92,6 +92,18 @@ export async function getPontos(accessToken) {
   });
   if (rawResponse.status === 200) {
     const content = await rawResponse.json();
+    const age = 60 * 60 * 24 * 30 * 1000;
+    cookies.set("usuarioImagem", content.profile_pic, {
+      path: "/",
+      maxAge: age,
+      sameSite: true,
+    })
+    cookies.set("nickname", content.username, {
+      path: "/",
+      maxAge: age,
+      sameSite: true,
+    })
+
     return Promise.resolve(content);
   }
 };
@@ -149,7 +161,7 @@ export async function updateUserInfo(accessToken, email, password) {
   return res.json()
 }
 
-export async function updateProfilePic(accessToken, picId) {
+export async function updateProfilePic(accessToken, picId, cookies) {
   const res = await fetch('https://cartolol-apirest.vercel.app/api/update_profile_pic', {
     body: JSON.stringify({
       jwt: accessToken,
@@ -161,7 +173,12 @@ export async function updateProfilePic(accessToken, picId) {
     },
     method: 'POST'
   })
-  return res.json()
+  const age = 60 * 60 * 24 * 30 * 1000;
+  cookies.set("usuarioImagem", picId, {
+    path: "/",
+    maxAge: age,
+    sameSite: true,
+  })
 }
 
 export async function getJogadores(number) {

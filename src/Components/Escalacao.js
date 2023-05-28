@@ -16,7 +16,6 @@ export default function Escalacao(props) {
 
     document.title = "Cartolol - Escalação";
     const [pontosTotAnterior, setPontosTotAnterior] = useState('0');
-    const navigate = useNavigate();
     const cookies = new Cookies();
     const accessToken = cookies.get('access-token')
     const [status, setStatus] = useState(false);
@@ -37,7 +36,7 @@ export default function Escalacao(props) {
         const boolStatus = await mercadoStatus(accessToken)
         setStatus(boolStatus)
 
-        const user = await getPontos(accessToken)
+        const user = await getPontos(accessToken, cookies)
         console.log(user)
         if (parseInt(user.flag) == 1) {
             setFotoTop(user.id_jogtop)
@@ -77,33 +76,6 @@ export default function Escalacao(props) {
         }
         document.getElementById('loadinganim').style.display = 'none'
         document.getElementById('btntext').innerHTML = "ESCALADO!"
-    };
-
-    async function getPontos() {
-        const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ jwt: accessToken })
-        });
-        if (rawResponse.status === 200) {
-            const content = await rawResponse.json();
-            const age = 60 * 60 * 24 * 30 * 1000;
-            cookies.set("usuarioImagem", content.profile_pic, {
-                path: "/",
-                maxAge: age,
-                sameSite: true,
-            })
-            cookies.set("nickname", content.username, {
-                path: "/",
-                maxAge: age,
-                sameSite: true,
-            })
-
-            return Promise.resolve(content);
-        }
     };
 
     function showOrHide() {
