@@ -13,6 +13,7 @@ import loading from '../images/loading-gif.gif';
 import { mercadoStatus, checkSession, getPontos, updateUserLanes } from "./API/Endpoints";
 
 export default function Escalacao(props) {
+
     document.title = "Cartolol - Escalação";
     const [pontosTotAnterior, setPontosTotAnterior] = useState('0');
     const navigate = useNavigate();
@@ -76,8 +77,34 @@ export default function Escalacao(props) {
         }
         document.getElementById('loadinganim').style.display = 'none'
         document.getElementById('btntext').innerHTML = "ESCALADO!"
-        getPontos(accessToken).then(data => { setPontosTot(data['ptos']) })
-    }
+    };
+
+    async function getPontos() {
+        const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ jwt: accessToken })
+        });
+        if (rawResponse.status === 200) {
+            const content = await rawResponse.json();
+            const age = 60 * 60 * 24 * 30 * 1000;
+            cookies.set("usuarioImagem", content.profile_pic, {
+                path: "/",
+                maxAge: age,
+                sameSite: true,
+            })
+            cookies.set("nickname", content.username, {
+                path: "/",
+                maxAge: age,
+                sameSite: true,
+            })
+
+            return Promise.resolve(content);
+        }
+    };
 
     function showOrHide() {
         if (showElement) {
@@ -93,7 +120,6 @@ export default function Escalacao(props) {
         user();
     }, []);
 
-    console.log(status)
     if (status) {
         if (fotoTop.img_url === undefined || fotoJungle.img_url === undefined || fotoMid.img_url === undefined || fotoBot.img_url === undefined || fotoSup.img_url === undefined) {
             botaoPontos = <button type="submit" className="btn btn-escalar-desativado" >

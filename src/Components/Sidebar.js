@@ -22,106 +22,81 @@ import foto11 from '../images/perfilFotos/11.png';
 
 function Sidebar(props) {
 
-    const [dados, setDados] = useState('');
     const [foto, setFoto] = useState(loading);
     const cookies = new Cookies();
-    const accessToken = cookies.get('access-token');
 
-    async function checkSession() {
-        const res = await fetch('https://cartolol-apirest.vercel.app/api/check_session', {
-            body: JSON.stringify({
-                jwt: accessToken
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            method: 'POST'
-        })
-    }
+    const fotoUsuario = cookies.get('usuarioImagem');
+    const nickUsuario = cookies.get('nickname');
 
-    async function getUsuario() {
-        const rawResponse = await fetch('https://cartolol-apirest.vercel.app/api/get_user_info', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ jwt: accessToken })
-        });
-        if (rawResponse.status === 200) {
-            const content = await rawResponse.json();
-            setDados(content.username);
-            switch (content.profile_pic) {
-                case 0:
-                    setFoto(foto0)
-                    break;
-                case 1:
-                    setFoto(foto1)
-                    break;
-                case 2:
-                    setFoto(foto2)
-                    break;
-                case 3:
-                    setFoto(foto3)
-                    break;
-                case 4:
-                    setFoto(foto4)
-                    break;
-                case 5:
-                    setFoto(foto5)
-                    break;
-                case 6:
-                    setFoto(foto6)
-                    break;
-                case 7:
-                    setFoto(foto7)
-                    break;
-                case 8:
-                    setFoto(foto8)
-                    break;
-                case 9:
-                    setFoto(foto9)
-                    break;
-                case 10:
-                    setFoto(foto10)
-                    break;
-                case 11:
-                    setFoto(foto11)
-                    break;
-                default:
-                    setFoto(loading)
-                    break;
-            }
-            return content;
+    function setarUsuario() {
+        switch (parseInt(fotoUsuario)) {
+            case 0:
+                setFoto(foto0)
+                break;
+            case 1:
+                setFoto(foto1)
+                break;
+            case 2:
+                setFoto(foto2)
+                break;
+            case 3:
+                setFoto(foto3)
+                break;
+            case 4:
+                setFoto(foto4)
+                break;
+            case 5:
+                setFoto(foto5)
+                break;
+            case 6:
+                setFoto(foto6)
+                break;
+            case 7:
+                setFoto(foto7)
+                break;
+            case 8:
+                setFoto(foto8)
+                break;
+            case 9:
+                setFoto(foto9)
+                break;
+            case 10:
+                setFoto(foto10)
+                break;
+            case 11:
+                setFoto(foto11)
+                break;
+            default:
+                setFoto(loading)
+                break;
         }
+
     };
 
     useEffect(() => {
-        checkSession();
-        getUsuario();
+        setarUsuario();
+        
     }, []);
 
-    function logout()
-    {
+    function logout() {
         const cookies = new Cookies();
         cookies.remove("access-token")
     }
 
     return (
-        <div id="sideNav" class="sidenav">
+        <div id="sideNav" className="sidenav">
             <div className="side-top">
                 <div className="side-user">
                     <div className="side-image"><img className="foto-side" src={foto} alt="foto"></img></div>
-                    <p className="side-name">{dados}</p>
+                    <p className="side-name">{nickUsuario}</p>
                 </div>
                 <img className="close-btn" src={menuIcon} alt="menu-hamburguer" onClick={props.showOrHide} />
             </div>
             <div className="side-itens">
-                <a className="side-option" href="/escalacao"><span className="side-text">Escalação</span><img className="escalacao-icon" src={escalacaoIcon} alt="escalacao"/></a>
-                <a className="side-option" href="/ranking"><span className="side-text">Ranking</span><img className="ranking-icon" src={rankingIcon} alt="ranking"/></a>
-                <a className="side-option" href="/perfil"><span className="side-text">Perfil</span><img className="escalacao-icon" src={perfilIcon} alt="perfil"/></a>
-                <a className="side-option" href="/" onClick={logout}><span className="side-text">Sair</span><img className="logout-icon" src={logoutIcon} alt="sair"/></a>
+                <a className="side-option" href="/escalacao"><span className="side-text">Escalação</span><img className="escalacao-icon" src={escalacaoIcon} alt="escalacao" /></a>
+                <a className="side-option" href="/ranking"><span className="side-text">Ranking</span><img className="ranking-icon" src={rankingIcon} alt="ranking" /></a>
+                <a className="side-option" href="/perfil"><span className="side-text">Perfil</span><img className="escalacao-icon" src={perfilIcon} alt="perfil" /></a>
+                <a className="side-option" href="/" onClick={logout}><span className="side-text">Sair</span><img className="logout-icon" src={logoutIcon} alt="sair" /></a>
             </div>
         </div>
     );
