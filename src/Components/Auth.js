@@ -79,9 +79,9 @@ export default function Auth(props) {
                 placeholder="Senha"
               />
             </div>
-            <div class="form-check mt-1">
-              <input class="form-check-input inpt-dark inpt-check" type="checkbox" value="" id="flexCheckDefault" />
-              <label class="form-check-label text-secondary" for="flexCheckDefault">
+            <div className="form-check mt-1">
+              <input className="form-check-input inpt-dark inpt-check" type="checkbox" value="" id="flexCheckDefault" />
+              <label className="form-check-label text-secondary" htmlFor="flexCheckDefault">
                 Lembrar-me
               </label>
             </div>

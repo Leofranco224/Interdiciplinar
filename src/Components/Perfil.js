@@ -202,6 +202,7 @@ export default function Perfil(props) {
     const definirFoto = (aux, id) => async (event) => {
         showOrHideFoto();
         setFoto(aux)
+
         const cookies = new Cookies();
         const accessToken = cookies.get('access-token')
         const res = await fetch('https://cartolol-apirest.vercel.app/api/update_profile_pic', {
@@ -215,7 +216,12 @@ export default function Perfil(props) {
             },
             method: 'POST'
         })
-        const result = await res.json()
+        const age = 60 * 60 * 24 * 30 * 1000;
+        cookies.set("usuarioImagem", id, {
+            path: "/",
+            maxAge: age,
+            sameSite: true,
+        })
     }
 
     return (
